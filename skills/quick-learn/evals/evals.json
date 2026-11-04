@@ -1,0 +1,43 @@
+{
+  "skill_name": "quick-learn",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "什么是傅里叶变换？数学基础一般，想直观理解。",
+      "expected_output": "以资深工程师/学者角色给出回答，包含声波/和弦类比的直接答案、4步推理过程、3个替代视角（含耳蜗生理结构、不确定性原理、DFT工程应用），以及带检验标准的今日与本周行动计划。",
+      "files": [],
+      "expectations": [
+        "First section is a direct answer with a vivid analogy (e.g. musical chords, sound waves, prism)",
+        "Step-by-step reasoning details the journey from time domain to frequency domain",
+        "Includes alternative perspectives or counter-intuitive angles (e.g. cochlea physiology, time-frequency uncertainty, FFT practical vs continuous)",
+        "Includes concrete action plan with today's action, expected outputs, and verification criteria",
+        "Strictly avoids vague hedging or throat-clearing openings"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "我想学分布式系统，应该怎么入手？",
+      "expected_output": "以资深分布式系统架构师角色，拆解这一宽泛问题，优先深挖最关键的核心主干（CAP/一致性协议/Raft），并提供立即可执行的代码实验行动计划。",
+      "files": [],
+      "expectations": [
+        "Recognizes that the question is broad and breaks it down into clear sub-dimensions (theory, consensus, storage, operations)",
+        "Focuses primarily on the highest-priority sub-problem (e.g. core consensus / 80/20 learning path) while giving one-sentence summaries for the rest",
+        "Reasoning explains why consensus and failure models form the foundation of distributed systems",
+        "Action plan includes an immediate 80/20 hands-on task (e.g. MIT 6.824 Lab 1 or building a simple Raft leader election) with clear verification criteria"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "我想通过间歇性断食（16+8）减脂，到底靠谱吗？怎么开始？",
+      "expected_output": "以循证医学医生/健康顾问角色，直接给出能量守恒与代谢调节的明确结论，提示医疗红线，分析胰岛素敏感性与肌肉流失风险，并给出今日行动计划。",
+      "files": [],
+      "expectations": [
+        "Provides a direct, non-vague conclusion grounded in energy balance and metabolic evidence",
+        "Explicitly includes medical safety boundary/redline (consulting a physician, contraindications for eating disorders/diabetes/pregnancy)",
+        "Presents step-by-step physiological reasoning (glycogen depletion, insulin drop, autophagy)",
+        "Includes alternative perspectives or common pitfalls (caloric compensation during eating window, muscle loss risk)",
+        "Action plan provides today's tangible setup (e.g. defining 12:00-20:00 eating window) with clear compliance criteria"
+      ]
+    }
+  ]
+}

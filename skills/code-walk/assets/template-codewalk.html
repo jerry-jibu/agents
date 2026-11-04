@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{TITLE}} — 4-Tier Deep Dive Code Walk</title>
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --surface: #111827;
+      --surface-card: #1e293b;
+      --surface-hover: #334155;
+      --border: #374151;
+      --text: #f3f4f6;
+      --text-muted: #9ca3af;
+      --accent: #38bdf8;
+      --accent-rgb: 56, 189, 248;
+      --purple: #a855f7;
+      --success: #34d399;
+      --warning: #fbbf24;
+      --danger: #f87171;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: 1.65;
+      padding-bottom: 88px;
+    }
+
+    /* Sticky Top Navigation & Mode Switcher */
+    .top-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(17, 24, 39, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .brand {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .tier-nav {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .tier-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.8rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: all 0.2s;
+    }
+    .tier-link:hover {
+      color: var(--text);
+      border-color: var(--border);
+      background: var(--surface-card);
+    }
+    .view-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn:hover {
+      background: var(--surface-hover);
+      border-color: var(--accent);
+    }
+    .btn.active {
+      background: var(--accent);
+      color: #0b0f19;
+      font-weight: 600;
+      border-color: var(--accent);
+    }
+
+    /* Layout Container */
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 32px 24px;
+    }
+
+    /* Hero Banner */
+    .hero {
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 9999px;
+      font-size: 0.74rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 10px;
+      background: rgba(var(--accent-rgb), 0.15);
+      color: var(--accent);
+      border: 1px solid rgba(var(--accent-rgb), 0.3);
+    }
+    .hero h2 {
+      font-size: 1.95rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      line-height: 1.25;
+    }
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    /* Section & Tier Headings */
+    .tier-header {
+      margin: 44px 0 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .tier-title {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .tier-title::before {
+      content: "";
+      display: inline-block;
+      width: 5px;
+      height: 22px;
+      background: var(--accent);
+      border-radius: 3px;
+    }
+    .tier-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Tables (Boundaries, State Machine, Blast Radius) */
+    .table-wrap {
+      overflow-x: auto;
+      margin-bottom: 24px;
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+    th, td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    th {
+      background: rgba(17, 24, 39, 0.7);
+      color: var(--accent);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.76rem;
+      letter-spacing: 0.04em;
+    }
+    tr:last-child td { border-bottom: none; }
+
+    /* Code Walk Function Card (Tier 3) */
+    .walk-card {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 28px;
+      overflow: hidden;
+    }
+    .card-header {
+      background: rgba(17, 24, 39, 0.75);
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+    }
+    .file-ref {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .file-ref:hover { text-decoration: underline; }
+    .tag-group { display: flex; gap: 8px; align-items: center; }
+    .fn-category {
+      background: rgba(168, 85, 247, 0.15);
+      border: 1px solid rgba(168, 85, 247, 0.35);
+      color: #c084fc;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+    }
+    .fn-tag {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 2px 8px;
+      border-radius: 4px;
+      color: var(--text);
+    }
+    .card-body { padding: 20px; }
+
+    /* 4-Pillar Function Contract Grid */
+    .contract-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .contract-item {
+      background: rgba(11, 15, 25, 0.55);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px 12px;
+      font-size: 0.83rem;
+    }
+    .contract-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+    .contract-item.blast { border-left: 3px solid var(--warning); }
+    .contract-item.invariant { border-left: 3px solid var(--accent); }
+
+    /* Code Snippet */
+    pre.code-block {
+      background: #080c14;
+      border: 1px solid #1f293d;
+      border-radius: 6px;
+      padding: 14px;
+      overflow-x: auto;
+      font-family: var(--font-mono);
+      font-size: 0.86rem;
+      color: #e2e8f0;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    /* Callout Boxes (Lock Discipline, Security, AI Audit) */
+    .invariant-box {
+      border-left: 3px solid var(--warning);
+      background: rgba(251, 191, 36, 0.08);
+      padding: 12px 16px;
+      border-radius: 0 6px 6px 0;
+      margin-bottom: 14px;
+      font-size: 0.88rem;
+    }
+    .invariant-box.lock {
+      border-color: var(--purple);
+      background: rgba(168, 85, 247, 0.08);
+    }
+    .invariant-box.security {
+      border-color: var(--danger);
+      background: rgba(248, 113, 113, 0.08);
+    }
+    .invariant-box.seam {
+      border-color: var(--success);
+      background: rgba(52, 211, 153, 0.08);
+    }
+    .invariant-title {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    /* Two-Column Commentary */
+    .commentary-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 14px;
+    }
+    @media (max-width: 768px) {
+      .commentary-grid { grid-template-columns: 1fr; }
+    }
+    .commentary-panel {
+      background: rgba(0, 0, 0, 0.22);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px 14px;
+      font-size: 0.86rem;
+    }
+    .commentary-panel h4 {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+      color: var(--accent);
+    }
+
+    /* Playbook Step List (Tier 4) */
+    .playbook-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .playbook-step {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: 0.9rem;
+    }
+    .step-num {
+      background: var(--accent);
+      color: #0b0f19;
+      font-weight: 700;
+      font-size: 0.78rem;
+      padding: 2px 8px;
+      border-radius: 999px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* Quiz Component */
+    .quiz-container {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px;
+      margin: 28px 0;
+    }
+    .quiz-question {
+      font-size: 1.02rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .quiz-option {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 12px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 0.9rem;
+    }
+    .quiz-option:hover {
+      border-color: var(--accent);
+      background: var(--surface-hover);
+    }
+    .quiz-option.correct {
+      border-color: var(--success);
+      background: rgba(52, 211, 153, 0.15);
+      color: var(--success);
+    }
+    .quiz-option.incorrect {
+      border-color: var(--danger);
+      background: rgba(248, 113, 113, 0.15);
+      color: var(--danger);
+    }
+    .quiz-feedback {
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      display: none;
+    }
+
+    /* Slideshow Mode Overrides */
+    body.mode-slideshow .container {
+      max-width: 980px;
+      min-height: calc(100vh - 140px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    body.mode-slideshow .tier-nav { display: none; }
+    body.mode-slideshow .slide-node { display: none; }
+    body.mode-slideshow .slide-node.active-slide {
+      display: block;
+      animation: fadeIn 0.22s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .slide-footer {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(17, 24, 39, 0.95);
+      border-top: 1px solid var(--border);
+      padding: 12px 24px;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+    }
+    body.mode-slideshow .slide-footer { display: flex; }
+    .kbd {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body class="mode-document">
+
+  <div class="top-bar">
+    <div class="brand"><span>🔬</span> {{TITLE}}</div>
+    <nav class="tier-nav">
+      <a class="tier-link" href="#tier1">Tier 1: 架构与组件</a>
+      <a class="tier-link" href="#tier2">Tier 2: 数据流与控制流</a>
+      <a class="tier-link" href="#tier3">Tier 3: 核心函数深剖</a>
+      <a class="tier-link" href="#tier4">Tier 4: 可维护性与影响面</a>
+      <a class="tier-link" href="#quiz">互动检验</a>
+    </nav>
+    <div class="view-controls">
+      <button class="btn active" id="btnDoc" onclick="setViewMode('document')">Document View</button>
+      <button class="btn" id="btnSlide" onclick="setViewMode('slideshow')">Slideshow View</button>
+    </div>
+  </div>
+
+  <div class="container" id="contentRoot">
+
+    <!-- Slide 1: Tier 1 — Architecture & Component Boundaries -->
+    <div class="slide-node active-slide" id="tier1" data-slide-index="0">
+      <div class="hero">
+        <span class="badge">{{MODULE_NAME}} · 4-Tier Code Walk</span>
+        <h2>{{SUBTITLE}}</h2>
+        <p>{{ABSTRACT}}</p>
+      </div>
+
+      <div class="tier-header">
+        <h3 class="tier-title">Tier 1: 架构与组件边界 (Architecture & Components)</h3>
+        <span class="tier-subtitle">C4 Container/Component · 进程拓扑与信任边界</span>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>组件 / 进程</th>
+              <th>监听端口 / 入口</th>
+              <th>协议与鉴权</th>
+              <th>上游调用方</th>
+              <th>下游依赖</th>
+              <th>信任边界与职责</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>{{COMPONENT_NAME}}</code></td>
+              <td><code>{{ENDPOINT}}</code></td>
+              <td><code>{{PROTOCOL}}</code></td>
+              <td><code>{{UPSTREAM}}</code></td>
+              <td><code>{{DOWNSTREAM}}</code></td>
+              <td>{{TRUST_BOUNDARY_DESC}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Slide 2: Tier 2 — Data Flow & Control Flow -->
+    <div class="slide-node" id="tier2" data-slide-index="1">
+      <div class="tier-header">
+        <h3 class="tier-title">Tier 2: 关键数据流与控制流 (Data & Control Flow)</h3>
+        <span class="tier-subtitle">Request Lifecycle · 状态机流转与异常回滚</span>
+      </div>
+
+      <div class="invariant-box">
+        <span class="invariant-title">🔄 端到端数据流主线 (Tracer Bullet Lifecycle)</span>
+        {{DATA_FLOW_SUMMARY}}
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>当前状态</th>
+              <th>触发事件 / 请求</th>
+              <th>前置守卫条件 (Guard)</th>
+              <th>目标状态</th>
+              <th>执行函数</th>
+              <th>失败回滚与副作用清理</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>{{STATE_FROM}}</code></td>
+              <td><code>{{TRIGGER}}</code></td>
+              <td><code>{{GUARD}}</code></td>
+              <td><code>{{STATE_TO}}</code></td>
+              <td><a class="file-ref" href="file:///{{FILE_PATH}}#L{{LINE_START}}">{{FUNCTION_NAME}}</a></td>
+              <td>{{FAILURE_RECOVERY}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Slide 3: Tier 3 — Critical Path Function-Level Deep Dive -->
+    <div class="slide-node" id="tier3" data-slide-index="2">
+      <div class="tier-header">
+        <h3 class="tier-title">Tier 3: 关键路径函数级解构 (Function-Level Deep Dive)</h3>
+        <span class="tier-subtitle">契约 · 锁纪律 · 双轴对抗式审计</span>
+      </div>
+
+      <div class="walk-card">
+        <div class="card-header">
+          <a class="file-ref" href="file:///{{FILE_PATH}}#L{{LINE_START}}-L{{LINE_END}}" target="_blank">{{FILE_NAME}}:L{{LINE_START}}-L{{LINE_END}}</a>
+          <div class="tag-group">
+            <span class="fn-category">{{CATEGORY_TAG}}</span>
+            <span class="fn-tag">{{FUNCTION_SIGNATURE}}</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <!-- 4-Pillar Contract Bar -->
+          <div class="contract-grid">
+            <div class="contract-item">
+              <span class="contract-label">Preconditions (前置条件)</span>
+              {{PRECONDITIONS}}
+            </div>
+            <div class="contract-item">
+              <span class="contract-label">Postconditions (后置保证)</span>
+              {{POSTCONDITIONS}}
+            </div>
+            <div class="contract-item invariant">
+              <span class="contract-label">Maintained Invariants (核心不变式)</span>
+              {{INVARIANTS}}
+            </div>
+            <div class="contract-item blast">
+              <span class="contract-label">Blast Radius (修改爆炸半径)</span>
+              {{BLAST_RADIUS}}
+            </div>
+          </div>
+
+          <pre class="code-block"><code>{{CODE_SNIPPET}}</code></pre>
+
+          <div class="invariant-box lock">
+            <span class="invariant-title">🔒 并发锁纪律与生产红线审查 (Axis 2: Production Red-Line Audit)</span>
+            {{LOCK_AND_REDLINE_NOTE}}
+          </div>
+
+          <div class="commentary-grid">
+            <div class="commentary-panel">
+              <h4>设计意图与权衡 (Why This Design)</h4>
+              <p>{{WHY_EXPLANATION}}</p>
+            </div>
+            <div class="commentary-panel">
+              <h4>AI 异味与防御边界 (Axis 1 & Boundary Defense)</h4>
+              <p>{{BOUNDARY_DEFENSE_NOTE}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 4: Tier 4 — Modifiability & Blast Radius Playbook -->
+    <div class="slide-node" id="tier4" data-slide-index="3">
+      <div class="tier-header">
+        <h3 class="tier-title">Tier 4: 可维护性与修改避坑指南 (Modifiability & Playbook)</h3>
+        <span class="tier-subtitle">演进推演 · 架构接缝 · 爆炸半径矩阵 · 安全作业清单</span>
+      </div>
+
+      <div class="commentary-grid" style="margin-bottom: 20px;">
+        <div class="invariant-box seam" style="margin-bottom: 0;">
+          <span class="invariant-title">🟢 架构弹性接缝 (Clean Extension Points)</span>
+          {{EXTENSION_POINTS}}
+        </div>
+        <div class="invariant-box security" style="margin-bottom: 0;">
+          <span class="invariant-title">🔴 高耦合/僵化修改禁区 (Rigid / Fragile Spots)</span>
+          {{RIGID_SPOTS}}
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>典型变更场景 / 核心函数</th>
+              <th>上游受影响调用方</th>
+              <th>下游副作用 / 存储影响</th>
+              <th>改动易破坏的不变式</th>
+              <th>必跑回归测试命令</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>{{CHANGE_SCENARIO}}</strong></td>
+              <td><code>{{UPSTREAM_IMPACT}}</code></td>
+              <td><code>{{DOWNSTREAM_IMPACT}}</code></td>
+              <td>{{RISK_INVARIANT}}</td>
+              <td><code>{{TEST_CMD}}</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <ul class="playbook-list">
+        <li class="playbook-step">
+          <span class="step-num">Step 1</span>
+          <div><strong>基准测试锚定：</strong>修改前先执行 <code>{{TEST_CMD}}</code> 确保基线全绿，并为新需求编写失败用例。</div>
+        </li>
+        <li class="playbook-step">
+          <span class="step-num">Step 2</span>
+          <div><strong>守卫顺序与锁外校验：</strong>新增参数校验必须置于 Gate 1~2（锁获取和磁盘 I/O 之前）。</div>
+        </li>
+        <li class="playbook-step">
+          <span class="step-num">Step 3</span>
+          <div><strong>原子回滚对齐：</strong>若改动涉及状态流转，确保失败分支执行完整的状态回退与资源释放。</div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Slide 5: Active Verification Quiz -->
+    <div class="slide-node" id="quiz" data-slide-index="4">
+      <div class="tier-header">
+        <h3 class="tier-title">Active Verification Check (防坑实战自测)</h3>
+        <span class="tier-subtitle">检验边界条件、锁纪律与修改影响面理解深度</span>
+      </div>
+      <div class="quiz-container">
+        <div class="quiz-question">{{QUIZ_QUESTION}}</div>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, '错误原因解析：请检查锁临界区与失败回滚逻辑。')">A. {{OPTION_A}}</div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, '正确！完全掌握了该函数的核心不变式与安全修改边界。')">B. {{OPTION_B}}</div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, '错误原因解析：忽略了边界斜杠校验或并发竞争。')">C. {{OPTION_C}}</div>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Slideshow Footer Controls -->
+  <div class="slide-footer">
+    <div>
+      Slide <span id="currentSlideNum">1</span> of <span id="totalSlidesNum">5</span>
+      <span style="margin-left: 16px;"><span class="kbd">j</span>/<span class="kbd">k</span> or <span class="kbd">Space</span> to navigate</span>
+    </div>
+    <div style="display: flex; gap: 8px;">
+      <button class="btn" onclick="prevSlide()">Previous</button>
+      <button class="btn" onclick="nextSlide()">Next</button>
+    </div>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide-node');
+    const totalSlides = slides.length;
+    document.getElementById('totalSlidesNum').textContent = totalSlides;
+
+    function setViewMode(mode) {
+      if (mode === 'slideshow') {
+        document.body.className = 'mode-slideshow';
+        document.getElementById('btnSlide').classList.add('active');
+        document.getElementById('btnDoc').classList.remove('active');
+        showSlide(currentSlide);
+      } else {
+        document.body.className = 'mode-document';
+        document.getElementById('btnDoc').classList.add('active');
+        document.getElementById('btnSlide').classList.remove('active');
+        slides.forEach(s => s.classList.add('active-slide'));
+      }
+    }
+
+    function showSlide(index) {
+      if (index < 0) index = 0;
+      if (index >= totalSlides) index = totalSlides - 1;
+      currentSlide = index;
+      slides.forEach((s, idx) => {
+        s.classList.toggle('active-slide', idx === currentSlide);
+      });
+      document.getElementById('currentSlideNum').textContent = currentSlide + 1;
+    }
+
+    function nextSlide() { showSlide(currentSlide + 1); }
+    function prevSlide() { showSlide(currentSlide - 1); }
+
+    document.addEventListener('keydown', (e) => {
+      if (!document.body.classList.contains('mode-slideshow')) return;
+      if (e.key === 'ArrowRight' || e.key === 'j' || e.key === ' ') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'k') {
+        e.preventDefault();
+        prevSlide();
+      }
+    });
+
+    function checkAnswer(el, isCorrect, explanation) {
+      const container = el.closest('.quiz-container');
+      const feedback = container.querySelector('.quiz-feedback');
+      const options = container.querySelectorAll('.quiz-option');
+      options.forEach(opt => opt.style.pointerEvents = 'none');
+
+      if (isCorrect) {
+        el.classList.add('correct');
+        feedback.style.display = 'block';
+        feedback.style.background = 'rgba(52, 211, 153, 0.15)';
+        feedback.style.border = '1px solid var(--success)';
+        feedback.style.color = 'var(--success)';
+        feedback.innerHTML = '<strong>✓ 回答正确！</strong> ' + explanation;
+      } else {
+        el.classList.add('incorrect');
+        feedback.style.display = 'block';
+        feedback.style.background = 'rgba(248, 113, 113, 0.15)';
+        feedback.style.border = '1px solid var(--danger)';
+        feedback.style.color = 'var(--danger)';
+        feedback.innerHTML = '<strong>✗ 回答有误：</strong> ' + explanation;
+      }
+    }
+  </script>
+</body>
+</html>
