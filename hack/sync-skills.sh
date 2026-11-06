@@ -14,6 +14,7 @@ REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 BACKUP_SKILLS="$REPO_ROOT/skills"
 NODE_SKILLS="$HOME/.agents/skills"
 ZCODE_SKILLS="$HOME/.zcode/skills"
+ZCODE_AGENTS="$HOME/.zcode/agents"
 SOURCES_CONF="$REPO_ROOT/hack/sources.conf"
 
 log()  { printf '\033[1;34m==>\033[0m %s\n' "$*"; }
@@ -64,6 +65,7 @@ cmd_pull() {
   done < "$SOURCES_CONF"
   rm -rf "$workdir"
   ensure_dir_links
+  cmd_agents
   log "pull complete"
 }
 
@@ -112,6 +114,54 @@ cmd_restore() {
     log "restored all skills from backup repo"
   fi
   ensure_dir_links
+  cmd_agents
+}
+
+# agents — generate user-scope ZCode subagent definitions from every installed
+# skill's agents/*.md persona files. Persona body is embedded verbatim; the
+# skill copy stays the single source of truth, so re-run after pulls.
+agent_tools() { # $1=agent name -> ZCode tools allowlist
+  case "$1" in
+    egm-synthesizer)            echo "[Read, Grep, Glob, Write, Agent]" ;;
+    egm-bootstrap-orchestrator) echo "[Read, Grep, Glob, Write, Edit, Agent]" ;;
+    *)                          echo "[Read, Grep, Glob]" ;;  # reviewers: read-only
+  esac
+}
+
+cmd_agents() {
+  local d f fm name desc body out count=0 seen=" "
+  mkdir -p "$ZCODE_AGENTS"
+  for d in "$NODE_SKILLS"/*/; do
+    [ -d "$d/agents" ] || continue
+    for f in "$d"/agents/*.md; do
+      [ -f "$f" ] || continue
+      fm="$(awk 'NR==1&&$0~/^---[[:space:]]*$/{infm=1;next} infm&&$0~/^---[[:space:]]*$/{exit} infm{print}' "$f")"
+      [ -n "$fm" ] || continue
+      name="$(sed -n 's/^name:[[:space:]]*//p' <<< "$fm" | head -1)"
+      [ -n "$name" ] || continue
+      case "$seen" in *" $name "*) continue ;; esac
+      seen="$seen$name "
+      desc="$(sed -n 's/^description:[[:space:]]*//p' <<< "$fm" | head -1)"
+      body="$(awk 'NR==1&&$0~/^---[[:space:]]*$/{infm=1;next} infm&&$0~/^---[[:space:]]*$/{infm=0;body=1;next} body{print}' "$f")"
+      out="$ZCODE_AGENTS/$name.md"
+      {
+        echo "---"
+        echo "name: $name"
+        echo "description: ${desc:-Skill subagent from $(basename "$d")}"
+        echo "tools: $(agent_tools "$name")"
+        echo "---"
+        echo "$body"
+      } > "$out"
+      log "agent: $name <- $(basename "$d")"
+      count=$((count + 1))
+    done
+  done
+  log "generated $count agent definitions in $ZCODE_AGENTS"
+  # refresh the repo's canonical store and deploy to every harness
+  if [ -x "$REPO_ROOT/hack/sync-agents.sh" ]; then
+    "$REPO_ROOT/hack/sync-agents.sh" collect
+    "$REPO_ROOT/hack/sync-agents.sh" deploy all
+  fi
 }
 
 # list — installed node skills, marked [link] when the ~/.zcode symlink exists.
@@ -142,6 +192,8 @@ commands:
   backup            copy node skills -> this repo (additive)
   snapshot          backup + git commit
   restore [name...] restore skills from this repo -> node (default: all)
+  agents            regenerate ~/.zcode/agents subagent definitions from
+                    every installed skill's agents/*.md persona files
   list              list installed node skills
 EOF
 }
@@ -151,6 +203,7 @@ case "${1:-pull}" in
   backup)   cmd_backup ;;
   snapshot) cmd_snapshot ;;
   restore)  shift; cmd_restore "$@" ;;
+  agents)   cmd_agents ;;
   list)     cmd_list ;;
   -h|--help|help) usage ;;
   *) usage; die "unknown command: $1" ;;
