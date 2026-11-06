@@ -13,10 +13,12 @@ Centralized AI Agent Skills repository (`skills/`), shared across Claude Code (`
   - **`egm-*`**: Elephant-Goldfish Model suite (brainstorm → draft → review → review-loop → resolve, plus bootstrap & drift-report), installed from [google/elephant-goldfish-model](https://github.com/google/elephant-goldfish-model). Each skill carries its own copies of the repo's shared `agents/`, `resources/`, `docs/` trees (SKILL.md paths resolve against the plugin root).
 - `.skill-lock.json` — Installed skill lock metadata.
 - `agents/` — Canonical subagent definitions (markdown: `name`/`description`/`tools` frontmatter + system-prompt body), deployed to every agent harness on this node. Includes the **`egm-*`** Goldfish reviewer personas (design, structural, style, comprehension, codebase-details, implementation-readiness, inventive-catalyst, zoom-out) plus orchestrators (synthesizer, bootstrap-orchestrator).
-- `hack/` — Node skill/agent sync tooling:
+- `mcps/` — MCP service definitions (`<name>.json`): repo/workdir for the backing code, the background `service` (command + port), and `http`/`stdio` harness-facing entries. Currently: **sideshow** (web server on `localhost:8228`, HTTP MCP for zcode, stdio MCP for the rest).
+- `hack/` — Node skill/agent/MCP sync tooling:
   - **`sync-skills.sh`**: `pull` (install/refresh skills from remote sources onto this node + mirror into this repo), `backup` (node → repo, additive), `snapshot` (backup + git commit), `restore [skill...]` (repo → node), `agents` (regenerate subagent defs from skills, collect + deploy), `list`.
   - **`sync-agents.sh`**: `collect` (node `~/.zcode/agents` → repo store), `deploy [zcode|claude|antigravity|deepseek]` (repo store → harness agents dirs, converting `tools` frontmatter: array for zcode/antigravity, comma-list for claude/deepseek), `list` (per-harness deployment status).
-  - **`sources.conf`**: remote skill sources, one per line as `url|skills_subdir|shared_dirs`. Add a line to track another repo.
+  - **`sync-mcps.sh`**: `sync` (clone/fast-forward repos + install deps), `start` / `stop` (background services via nohup-style daemonize; pid+log in `~/.node-mcps/`), `status`, `configure [harness]` (merge entries into zcode/claude/antigravity/deepseek MCP configs).
+  - **`sources.conf`**: remote skill sources, one per line as `url|skills_subdir|shared_dirs` (subdir may be comma-separated; nested category dirs are walked). Sources: `google/elephant-goldfish-model`, `mattpocock/skills`, `tt-a1i/archify`, `modem-dev/sideshow`.
 
 ## Node layout
 
@@ -25,6 +27,9 @@ skill dirs are symlinks, e.g. `~/.zcode/skills/<name> -> ../../.agents/skills/<n
 Agent definitions deploy to `~/.zcode/agents/`, `~/.claude/agents/`,
 `~/.gemini/config/agents/`, `~/.deepseek/agents/` (paths overridable via env
 `ZCODE_AGENTS_DIR`, `CLAUDE_AGENTS_DIR`, `ANTIGRAVITY_AGENTS_DIR`, `DEEPSEEK_AGENTS_DIR`).
+MCP configs live at `~/.zcode/cli/config.json` (`mcp.servers`), `~/.claude.json`
+(`mcpServers`), `~/.gemini/config/mcp.json` (`mcpServers`), `~/.deepseek/mcp.json`
+(`mcpServers`) — overridable via `*_MCP_CONFIG` env vars.
 
 ```sh
 # refresh skills + agents on this node from all remote sources, then snapshot:
@@ -32,4 +37,8 @@ hack/sync-skills.sh pull && hack/sync-skills.sh snapshot
 
 # add a powerful agent by hand: write agents/<name>.md, then
 hack/sync-agents.sh deploy
+
+# full MCP lifecycle:
+hack/sync-mcps.sh sync && hack/sync-mcps.sh start && hack/sync-mcps.sh configure
+hack/sync-mcps.sh status   # ... stop / start as needed
 ```

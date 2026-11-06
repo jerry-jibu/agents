@@ -1,0 +1,9 @@
+{
+  "name": "sideshow",
+  "repo": "git@github.com:modem-dev/sideshow.git",
+  "workdir": "~/code/github.com/modem-dev/sideshow",
+  "install": "npm install --no-fund --no-audit",
+  "service": { "command": "npm", "args": ["run", "start"], "port": 8228 },
+  "http": { "url": "http://localhost:8228/mcp" },
+  "stdio": { "command": "npm", "args": ["run", "mcp"] }
+}

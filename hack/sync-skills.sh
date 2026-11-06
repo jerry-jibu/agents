@@ -33,9 +33,10 @@ ensure_dir_links() {
 
 # pull — clone every source in sources.conf, refresh the node's installed
 # skills from it, and mirror each installed skill into this repo.
+# subdir may be comma-separated; SKILL.md dirs are found at any depth <= 4.
 cmd_pull() {
   [ -r "$SOURCES_CONF" ] || die "missing $SOURCES_CONF"
-  local workdir url subdir shared src s d name
+  local workdir url subdir shared src s d name sub
   workdir="$(mktemp -d "${TMPDIR:-/tmp}/skill-sources.XXXXXX")"
   while IFS='|' read -r url subdir shared; do
     case "$url" in ''|'#'*) continue ;; esac
@@ -43,24 +44,29 @@ cmd_pull() {
     log "source: $url"
     src="$workdir/$(basename "$url" .git)"
     git clone --quiet --depth 1 "$url" "$src" || die "clone failed: $url"
-    [ -d "$src/$subdir" ] || die "no $subdir/ in $url"
-    for d in "$src/$subdir"/*/; do
-      [ -f "$d/SKILL.md" ] || continue
-      name="$(basename "$d")"
-      rsync -a --delete "$d" "$NODE_SKILLS/$name/"
-      # shared plugin-root trees (e.g. egm agents/, resources/, docs/)
-      IFS=',' read -r -a shared_dirs <<< "${shared:-}"
-      for s in "${shared_dirs[@]}"; do
-        s="$(trim "$s")"
-        [ -n "$s" ] || continue
-        if [ -d "$src/$s" ]; then
-          rsync -a --delete "$src/$s/" "$NODE_SKILLS/$name/$s/"
-        else
-          warn "shared dir '$s' not found in $url"
-        fi
-      done
-      rsync -a --delete "$NODE_SKILLS/$name/" "$BACKUP_SKILLS/$name/"
-      log "  installed + backed up: $name"
+    IFS=',' read -r -a subdirs <<< "${subdir:-.}"
+    for sub in "${subdirs[@]}"; do
+      sub="$(trim "$sub")"
+      [ -n "$sub" ] || continue
+      [ -d "$src/$sub" ] || { warn "no $sub/ in $url"; continue; }
+      while IFS= read -r skillmd; do
+        d="$(dirname "$skillmd")"
+        name="$(basename "$d")"
+        rsync -a --delete "$d/" "$NODE_SKILLS/$name/"
+        # shared plugin-root trees (e.g. egm agents/, resources/, docs/)
+        IFS=',' read -r -a shared_dirs <<< "${shared:-}"
+        for s in ${shared_dirs[@]+"${shared_dirs[@]}"}; do
+          s="$(trim "$s")"
+          [ -n "$s" ] || continue
+          if [ -d "$src/$s" ]; then
+            rsync -a --delete "$src/$s/" "$NODE_SKILLS/$name/$s/"
+          else
+            warn "shared dir '$s' not found in $url"
+          fi
+        done
+        rsync -a --delete "$NODE_SKILLS/$name/" "$BACKUP_SKILLS/$name/"
+        log "  installed + backed up: $name"
+      done < <(find "$src/$sub" -maxdepth 4 -name SKILL.md -not -path '*/node_modules/*' | sort)
     done
   done < "$SOURCES_CONF"
   rm -rf "$workdir"
