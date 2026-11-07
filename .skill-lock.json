@@ -46,553 +46,553 @@
       "source": "github.com/addyosmani/agent-skills",
       "commit": "301b02b12bff98e4688e6984af6556802322bbde",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "fb7f24fc8a251bf754e1f1f0cab9aec27208a8af"
+      "deployedHash": "4b11be9f98adb82d0a74a8b01a15c91905db6ce8"
     },
     "archify": {
       "zone": "vendor",
       "source": "github.com/tt-a1i/archify",
       "commit": "a4065941f12be7967436261d9934784e381d423c",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "7e95c99759f47cfc6fedbe14b31354f0a21e7f67"
+      "deployedHash": "efd189fe14237dc9be9f61fec94e7d94024a7f63"
     },
     "archify-review": {
       "zone": "vendor",
       "source": "github.com/tt-a1i/archify",
       "commit": "a4065941f12be7967436261d9934784e381d423c",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "960ac8d7528bfa59f27572390a12aa902c0835c0"
+      "deployedHash": "a0da36acd100b90904395362a41decbfa4f09095"
     },
     "archify-tuning": {
       "zone": "vendor",
       "source": "github.com/tt-a1i/archify",
       "commit": "a4065941f12be7967436261d9934784e381d423c",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "29b28d7665b37d6ff6baaf35767db07e7b82c365"
+      "deployedHash": "d01e74970fb31ee4b5252f671111eb8b0354c918"
     },
     "ask-matt": {
       "zone": "vendor",
       "source": "github.com/mattpocock/skills",
       "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "c8436608941160587f7de8aafcf3d7ba5fa1cbf2"
+      "deployedHash": "e9566cf22793d250c050a8108cda16c4317b2e90"
     },
     "browser-testing-with-devtools": {
       "zone": "vendor",
       "source": "github.com/addyosmani/agent-skills",
       "commit": "301b02b12bff98e4688e6984af6556802322bbde",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "d8dafe170a63710994fbb91e99a27db5b6d56247"
+      "deployedHash": "fae82b61de7551a68fb722652ceaf1adfe03612f"
     },
     "chief-of-staff": {
       "zone": "vendor",
       "source": "github.com/mattpocock/skills",
       "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "edddf5376fe1f87027fe9885505d9b86c8a79b6a"
+      "deployedHash": "66a2e4fe61eb35e2bf01ae86d97d6139a9a38cfd"
     },
     "ci-cd-and-automation": {
       "zone": "vendor",
       "source": "github.com/addyosmani/agent-skills",
       "commit": "301b02b12bff98e4688e6984af6556802322bbde",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "fdee949da7ad9a49b82e96bb87ad935e761882a9"
+      "deployedHash": "cd4e6ac6eb579104ae833ca221b7887d350b81f8"
     },
     "claude-handoff": {
       "zone": "vendor",
       "source": "github.com/mattpocock/skills",
       "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "6ccdff6369f156c2810ecf943505efff0619ea09"
+      "deployedHash": "c884cdd6f83021c3d4f2e363f47bae6b9ce7d0ce"
     },
     "code-review": {
       "zone": "vendor",
       "source": "github.com/mattpocock/skills",
       "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "7b7249f0d94247100c38dca36b116919d7b43cc0"
+      "deployedHash": "0120ca4aba6117e02fd4dc5c21d361fbc3733442"
     },
     "code-review-and-quality": {
       "zone": "vendor",
       "source": "github.com/addyosmani/agent-skills",
       "commit": "301b02b12bff98e4688e6984af6556802322bbde",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "1889f609ecaf6982c5a9b27c905537bac307afef"
+      "deployedHash": "5651ffcc753246f01faf281e2cbeeaeb63fa15f0"
     },
     "code-simplification": {
       "zone": "vendor",
       "source": "github.com/addyosmani/agent-skills",
       "commit": "301b02b12bff98e4688e6984af6556802322bbde",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "fe79ab0232091f17cdbd6e7a568553d00763aa73"
+      "deployedHash": "c01d456dba8b25426a75551f2120f72f78fe4510"
     },
     "codebase-design": {
       "zone": "vendor",
       "source": "github.com/mattpocock/skills",
       "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "8f34d943c0e4adf044f907b665fbb2fcef283896"
+      "deployedHash": "0ca8449a5dc1595935163dac37076f86421d36c7"
     },
     "constraint-driven-development": {
       "zone": "vendor",
       "source": "github.com/addyosmani/agent-skills",
       "commit": "301b02b12bff98e4688e6984af6556802322bbde",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "ec67cb483c116808b2e40dcc3302e208c9d453a6"
+      "deployedHash": "35037bb18d7267264febc7daa83b9ebfca58871c"
     },
     "context-engineering": {
       "zone": "vendor",
       "source": "github.com/addyosmani/agent-skills",
       "commit": "301b02b12bff98e4688e6984af6556802322bbde",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "abe64e23018f9d5dea23272d71e033d2ad889385"
+      "deployedHash": "2f7718a6c75e0c4b2ef19c0fe4823943120f85e9"
     },
     "debugging-and-error-recovery": {
       "zone": "vendor",
       "source": "github.com/addyosmani/agent-skills",
       "commit": "301b02b12bff98e4688e6984af6556802322bbde",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "a631148ce3cfb97bfe2200f82832530989b97077"
+      "deployedHash": "e4cf1576010b12dcb1835ef0f11cd32b427aeae6"
     },
     "deprecation-and-migration": {
       "zone": "vendor",
       "source": "github.com/addyosmani/agent-skills",
       "commit": "301b02b12bff98e4688e6984af6556802322bbde",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "3e3d2505aaf1b0d096ed8460eed0ffa77d453bb0"
+      "deployedHash": "7d44e667f0f598fdc11a31ccae9fdc5ff99125be"
     },
     "diagnosing-bugs": {
       "zone": "vendor",
       "source": "github.com/mattpocock/skills",
       "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "e9282ec9dd98a5872586969dc7244e7098a4faf0"
+      "deployedHash": "6f22f77ad962fd5b96f821300812970627fa77c6"
     },
     "diagram-design": {
       "zone": "vendor",
       "source": "github.com/cathrynlavery/diagram-design",
       "commit": "e57eda6102a19444538ebd611d39534fad65b663",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "586581213e49a42dd93588ce3897c7f6f7760959"
+      "deployedHash": "c8a0459a3e370eb67a6fe7a91f4181b9159b22f8"
     },
     "documentation-and-adrs": {
       "zone": "vendor",
       "source": "github.com/addyosmani/agent-skills",
       "commit": "301b02b12bff98e4688e6984af6556802322bbde",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "35b78099058f312b9bb20f10d9da6429d2ac5a0b"
+      "deployedHash": "ca0ed660cea62450969b42fc3c1231f47c8739a4"
     },
     "domain-modeling": {
       "zone": "vendor",
       "source": "github.com/mattpocock/skills",
       "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "8a35a79bbef8a67bd1b45a081ec18cdfd47c6f3b"
+      "deployedHash": "dd9d4d39f87b2c067dc09714b6833676e6ed9a1b"
     },
     "doubt-driven-development": {
       "zone": "vendor",
       "source": "github.com/addyosmani/agent-skills",
       "commit": "301b02b12bff98e4688e6984af6556802322bbde",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "0f1f731135e61fc2b80663fa637c3a40f89c8f69"
+      "deployedHash": "6731d9c475316de74950c8a5323e4fdd56b2e765"
     },
     "egm-bootstrap": {
       "zone": "vendor",
       "source": "github.com/google/elephant-goldfish-model",
       "commit": "7bd119c1031c58e6a6f4e2031b397a2635872124",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "9320c8591250ba1e710566a11aaf9d18d978713b"
+      "deployedHash": "42f6aafd1363407c90378e7ba0611dcbf4a81508"
     },
     "egm-brainstorm": {
       "zone": "vendor",
       "source": "github.com/google/elephant-goldfish-model",
       "commit": "7bd119c1031c58e6a6f4e2031b397a2635872124",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "e8ef03eadc60318018ae63eea5496313e430642b"
+      "deployedHash": "4cb47970ef24a1ad258931782115ab99fd38f213"
     },
     "egm-draft": {
       "zone": "vendor",
       "source": "github.com/google/elephant-goldfish-model",
       "commit": "7bd119c1031c58e6a6f4e2031b397a2635872124",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "0507f0fe94767e5ff6508cf1a3c32c935d408945"
+      "deployedHash": "a11d46da4edf332c708db824491b1dbe0c880d8f"
     },
     "egm-drift-report": {
       "zone": "vendor",
       "source": "github.com/google/elephant-goldfish-model",
       "commit": "7bd119c1031c58e6a6f4e2031b397a2635872124",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "3e03d61889c407c7a4915135fc0d859b3cf645fc"
+      "deployedHash": "f29552aba88ee751687591b0e0664fc154b84854"
     },
     "egm-resolve": {
       "zone": "vendor",
       "source": "github.com/google/elephant-goldfish-model",
       "commit": "7bd119c1031c58e6a6f4e2031b397a2635872124",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "c52b6df069a5ed870b52e7dfd69077eadce66bd2"
+      "deployedHash": "5de6e2eab8fb03a1ba3ee7e7f9bae7740bb85c05"
     },
     "egm-review": {
       "zone": "vendor",
       "source": "github.com/google/elephant-goldfish-model",
       "commit": "7bd119c1031c58e6a6f4e2031b397a2635872124",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "11f005a0c05d76ed56477ba05dc6867779dc1235"
+      "deployedHash": "79224f3e96c551fd3481173d517c5cd3b4070aaa"
     },
     "egm-review-loop": {
       "zone": "vendor",
       "source": "github.com/google/elephant-goldfish-model",
       "commit": "7bd119c1031c58e6a6f4e2031b397a2635872124",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "49b0f53a99f341d445f8c7c3319532e20dd2a8ef"
+      "deployedHash": "f8e6c574078964d5096356c4416623c5bd454558"
     },
     "frontend-ui-engineering": {
       "zone": "vendor",
       "source": "github.com/addyosmani/agent-skills",
       "commit": "301b02b12bff98e4688e6984af6556802322bbde",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "b4f3c18f99e3496fe35091bedff8adc50a74c374"
+      "deployedHash": "92748bbc27e542514be0101b8b91f77fa018af86"
     },
     "git-guardrails-claude-code": {
       "zone": "vendor",
       "source": "github.com/mattpocock/skills",
       "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "a2a91afe3d41a76a9322cf56ad8b530359767182"
+      "deployedHash": "81b6f2f602374cb9194696e0ab58d08ad4201702"
     },
     "git-workflow-and-versioning": {
       "zone": "vendor",
       "source": "github.com/addyosmani/agent-skills",
       "commit": "301b02b12bff98e4688e6984af6556802322bbde",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "3f872af2010fbbb4df40598a453ee3e261aee723"
+      "deployedHash": "3002c065240f5502a7dc891a7d96ebb94a89d7c7"
     },
     "grill-me": {
       "zone": "vendor",
       "source": "github.com/mattpocock/skills",
       "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "213e8b3318c9935fbc341779203f0ddb2fc75857"
+      "deployedHash": "853f4ea73ca3c3816b4ed2d8b4529363de9e9200"
     },
     "grill-with-docs": {
       "zone": "vendor",
       "source": "github.com/mattpocock/skills",
       "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "eb78dd311446fcf7cd6eba23baf6446d0f85a101"
+      "deployedHash": "c3455c80d197429860d1195d2469134e0dde596c"
     },
     "grilling": {
       "zone": "vendor",
       "source": "github.com/mattpocock/skills",
       "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "fedd53eb845defe9e67cef18acb25250bdc73de3"
+      "deployedHash": "c7a8240011ff2d9fb797f17ada56ff1e8167a681"
     },
     "handoff": {
       "zone": "vendor",
       "source": "github.com/mattpocock/skills",
       "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "931ebd254b6cffc5ad9e554b0d9a15638bf0532e"
+      "deployedHash": "42957f179861624b09fe3096ba9bd494395d715d"
     },
     "idea-refine": {
       "zone": "vendor",
       "source": "github.com/addyosmani/agent-skills",
       "commit": "301b02b12bff98e4688e6984af6556802322bbde",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "a6062680fdbab3ac963d3c6fae70e391b387b6e0"
+      "deployedHash": "227f8be5971f4cdbd92836bb642c334d22254730"
     },
     "implement": {
       "zone": "vendor",
       "source": "github.com/mattpocock/skills",
       "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "6afd22ebd4cc4b2fa87d56232d835387ea7a44a4"
+      "deployedHash": "974a0ca8921e453e6d224c1c5327cc623b422ea4"
     },
     "implement-spec": {
       "zone": "vendor",
       "source": "github.com/mattpocock/skills",
       "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "db35c92c5585f17520496bf841d0ccd30d21ad24"
+      "deployedHash": "980e1738095941fbfdfd773f05a0006dddaa907f"
     },
     "improve-codebase-architecture": {
       "zone": "vendor",
       "source": "github.com/mattpocock/skills",
       "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "835b56e9373c7ee70832e3787eb84eb63e39f0e5"
+      "deployedHash": "7902b9c0bf754a95055d83ccbde6e373a57ab23d"
     },
     "incremental-implementation": {
       "zone": "vendor",
       "source": "github.com/addyosmani/agent-skills",
       "commit": "301b02b12bff98e4688e6984af6556802322bbde",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "05e9f9817fc096be3b47bcff8734266790136d13"
+      "deployedHash": "1a8ecb07b47cac54113794bf14d00918c07cfaf4"
     },
     "interview-me": {
       "zone": "vendor",
       "source": "github.com/addyosmani/agent-skills",
       "commit": "301b02b12bff98e4688e6984af6556802322bbde",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "13ce2145f23ce54b88c0e58a941388f440e454d5"
+      "deployedHash": "332155ff4d05b6fd04226dd8cd4cb6167d783cc8"
     },
     "launch-video": {
       "zone": "vendor",
       "source": "github.com/modem-dev/sideshow",
       "commit": "a3b18af5a77f40889ec1f06359a277ccc61310ff",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "97ff7e1e56c930d41fc6c9dba18323f741412e48"
+      "deployedHash": "c3fc3b9113c99be88e19b2e57bc96789f9597c0d"
     },
     "loop-me": {
       "zone": "vendor",
       "source": "github.com/mattpocock/skills",
       "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "9b3dbff4b0a4c0d19db349188d451b328fbe810a"
+      "deployedHash": "b22bef7c3c0b4fe1f41645c0d73ad1af8fa11dbc"
     },
     "migrate-to-shoehorn": {
       "zone": "vendor",
       "source": "github.com/mattpocock/skills",
       "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "e82ba1bfe712abc69dc3f93900f22e489e6fa3e9"
+      "deployedHash": "6f75d5f286e1323e774db5f51b4c847b331683f9"
     },
     "observability-and-instrumentation": {
       "zone": "vendor",
       "source": "github.com/addyosmani/agent-skills",
       "commit": "301b02b12bff98e4688e6984af6556802322bbde",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "2b93f7f97629ed348501d96aa8c18607ff34f56b"
+      "deployedHash": "92db842ac5f068fff1b74245caf43fb3a624994c"
     },
     "performance-optimization": {
       "zone": "vendor",
       "source": "github.com/addyosmani/agent-skills",
       "commit": "301b02b12bff98e4688e6984af6556802322bbde",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "135db8c2de57ee82ca7613c728c34bff8b10c0f6"
+      "deployedHash": "e9783bc8520dcc91497b2473f15ef492bef3a0d0"
     },
     "planning-and-task-breakdown": {
       "zone": "vendor",
       "source": "github.com/addyosmani/agent-skills",
       "commit": "301b02b12bff98e4688e6984af6556802322bbde",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "63031b4f2035dd9ad93a863e029978678518e38b"
+      "deployedHash": "bb6abba0e1b20aedb42f88ab185863e9d3fb36fa"
     },
     "pr": {
       "zone": "vendor",
       "source": "github.com/mattpocock/skills",
       "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "9bc47e5e38b3ebacb5b8f9c4f32b583e2ef7f565"
+      "deployedHash": "5fb262e73bc0aca2ae39133f4918e59533fabdfe"
     },
     "prototype": {
       "zone": "vendor",
       "source": "github.com/mattpocock/skills",
       "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "5d40125bec410a95d06b2c843ad77ab72a54b1db"
+      "deployedHash": "e7b10d4236f2bdf1c560d536c743d8c5bd9fbfb4"
     },
     "research": {
       "zone": "vendor",
       "source": "github.com/mattpocock/skills",
       "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "afe76f8eb5182ccf2ed31921017522c0f359428a"
+      "deployedHash": "b49d8514241b2b4ac525df647bccedfab9f2d04a"
     },
     "retro": {
       "zone": "vendor",
       "source": "github.com/mattpocock/skills",
       "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "58fc0d277991be43bfc3457fdc4e69b19b014666"
+      "deployedHash": "4fed3377668e1f657fce44a27637f5ad48af2782"
     },
     "scaffold-exercises": {
       "zone": "vendor",
       "source": "github.com/mattpocock/skills",
       "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "3c847e1babbec7e39bab09bd69ce1cd69a9474ff"
+      "deployedHash": "6f745e47dc2c28985a2ee5c398b0eae645e43014"
     },
     "security-and-hardening": {
       "zone": "vendor",
       "source": "github.com/addyosmani/agent-skills",
       "commit": "301b02b12bff98e4688e6984af6556802322bbde",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "28db16cb527b46f8fb729641daddfd5ba1fc680c"
+      "deployedHash": "7041dce69d8f47db21f25bf7d3630f4582353772"
     },
     "setup-matt-pocock-skills": {
       "zone": "vendor",
       "source": "github.com/mattpocock/skills",
       "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "a154c523c1c7c0eb1df6953f6b4fee04113da1e1"
+      "deployedHash": "07938ed7f69b5618102177aa1ab6037258753e55"
     },
     "setup-pre-commit": {
       "zone": "vendor",
       "source": "github.com/mattpocock/skills",
       "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "1172dcf6d0e0a92eead8cbc7be0f26cd626cad73"
+      "deployedHash": "31f2e55122c2ff68e484c31af318e69a1d8eb642"
     },
     "setup-ts-deep-modules": {
       "zone": "vendor",
       "source": "github.com/mattpocock/skills",
       "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "4bcd81312eac569def31be4c430e191589abb026"
+      "deployedHash": "397c9b37c9ef056518b00997d1aca4b86de1e119"
     },
     "shipping-and-launch": {
       "zone": "vendor",
       "source": "github.com/addyosmani/agent-skills",
       "commit": "301b02b12bff98e4688e6984af6556802322bbde",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "1782a8e39c548934113b1a2bd17b3335a2e16153"
+      "deployedHash": "c8ec63c558ae8517a2f2c588a51fd9eea231844b"
     },
     "sideshow": {
       "zone": "vendor",
       "source": "github.com/modem-dev/sideshow",
       "commit": "a3b18af5a77f40889ec1f06359a277ccc61310ff",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "22cefbdb4e368effaccc92deca3199e1b929f2e2"
+      "deployedHash": "b9e4e74933b1738507d4c1ab451191c18d088d56"
     },
     "software-factory": {
       "zone": "vendor",
       "source": "github.com/mattpocock/skills",
       "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "102e77f8354c20bb1f686ab69af00efdf6bdb17a"
+      "deployedHash": "55694f271bd5a053c39d652a4b06244dd0cd50cc"
     },
     "source-driven-development": {
       "zone": "vendor",
       "source": "github.com/addyosmani/agent-skills",
       "commit": "301b02b12bff98e4688e6984af6556802322bbde",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "d4340272ceb16966e0cb515da1dc7740427438c0"
+      "deployedHash": "09add01eb509d92e0f7d9872d71a39d7e0e0d689"
     },
     "spec-driven-development": {
       "zone": "vendor",
       "source": "github.com/addyosmani/agent-skills",
       "commit": "301b02b12bff98e4688e6984af6556802322bbde",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "dffb42d07e83c7dcec4cc65273d25a095e9e8564"
+      "deployedHash": "b0c69de9db91a6354fd6787c37daeb1376778ec8"
     },
     "tdd": {
       "zone": "vendor",
       "source": "github.com/mattpocock/skills",
       "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "1bd9c4e6bc70e3ff4501c8e875a1d8f414d3c9a3"
+      "deployedHash": "9f26217ce3881c6ef018d0160a405169d2825d01"
     },
     "teach": {
       "zone": "vendor",
       "source": "github.com/mattpocock/skills",
       "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "05070b0bdb35c3fbe2dd4316ff9b3d8ca3486e41"
+      "deployedHash": "c1ed3a42d6e5e03037d89330a2e29897e06f71c6"
     },
     "test-driven-development": {
       "zone": "vendor",
       "source": "github.com/addyosmani/agent-skills",
       "commit": "301b02b12bff98e4688e6984af6556802322bbde",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "48067e652ef03d4f6dbf4321a475ac1448b5246b"
+      "deployedHash": "5437f24257c806cf05842921a7053f3469da9abc"
     },
     "to-questionnaire": {
       "zone": "vendor",
       "source": "github.com/mattpocock/skills",
       "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "d9672a1af1a638713ae1ea2398b4b10bb7ce8014"
+      "deployedHash": "d20f4574b32e74b4374a0d4bfef88bd3f0e384e5"
     },
     "to-spec": {
       "zone": "vendor",
       "source": "github.com/mattpocock/skills",
       "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "28ba9e59b0eb68e47aa1df85fe25ba3b6c05851d"
+      "deployedHash": "3bb0ffe7f5b4cd30dd7b4a93c820c72187fa9fdf"
     },
     "to-tickets": {
       "zone": "vendor",
       "source": "github.com/mattpocock/skills",
       "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "cb11c84362a10e7fc910ddf9f1ba6aa0dbfff394"
+      "deployedHash": "46661186c09563659e22b72abf19802968951222"
     },
     "triage": {
       "zone": "vendor",
       "source": "github.com/mattpocock/skills",
       "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "c3eb56c26129e5d1abcb9f95b17803f9c8f12618"
+      "deployedHash": "3a4520467c8e9cc2b5e7fd19a863ca9c0dda3f87"
     },
     "using-agent-skills": {
       "zone": "vendor",
       "source": "github.com/addyosmani/agent-skills",
       "commit": "301b02b12bff98e4688e6984af6556802322bbde",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "473fb0cc569e9b4bc8e93338b7e29a88cf292565"
+      "deployedHash": "a7ba49ee7e555d9c9a949c4203b364a764b30aa7"
     },
     "wait-what": {
       "zone": "vendor",
       "source": "github.com/mattpocock/skills",
       "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "2d56669a732a0ea98485ff4df3172df3e2a01183"
+      "deployedHash": "a7d84f6dbc1a2992c5671b93e3649e3e91982a8a"
     },
     "wayfinder": {
       "zone": "vendor",
       "source": "github.com/mattpocock/skills",
       "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "98c043b95935ba308687c02e44f01ed566e4cc04"
+      "deployedHash": "b1338404d3bc8d0732c9c4545ec01f64b829a5b3"
     },
     "wizard": {
       "zone": "vendor",
       "source": "github.com/mattpocock/skills",
       "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "03cc69c7362f8b1c74aab77103553a873074161e"
+      "deployedHash": "0b94abd3923813289363adcdc718534a916e42b4"
     },
     "writing-beats": {
       "zone": "vendor",
       "source": "github.com/mattpocock/skills",
       "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "c3467d760463766bcc3529a29e882d8f16a77190"
+      "deployedHash": "5de9cf347e523edcef68b94919ad59c8e005b725"
     },
     "writing-for-agents": {
       "zone": "vendor",
       "source": "github.com/mattpocock/skills",
       "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "c29cde569f2fee1bf2b8fd2604189066b72ddb59"
+      "deployedHash": "75c00ee6fc195b0921d349b8575d3fb5a1a6406f"
     },
     "writing-fragments": {
       "zone": "vendor",
       "source": "github.com/mattpocock/skills",
       "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "a7d4b57f1756e75410cb42f24761abce39aec5cf"
+      "deployedHash": "ee4dd4bc22e5e9c3449abcce900a2cbd267da721"
     },
     "writing-shape": {
       "zone": "vendor",
       "source": "github.com/mattpocock/skills",
       "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "14ffd2cc6f4d78edb20a54442751d5efb5025621"
+      "deployedHash": "20ce4f11beafa2e9ebd40d65a21d8e8445ab6c75"
     }
   },
   "inHouse": {
     "architecture-diagram": {
-      "deployedHash": "49ed3913966e06e4509f170f93bed6152a340088"
+      "deployedHash": "19cc78268e0f79d6ed9365a0d3422dcd68d9ce42"
     },
     "code-to-spec": {
-      "deployedHash": "6fcf3ee4ccb28a473863d77119d09f4af8055e9d"
+      "deployedHash": "c7ee9fb8b86f2c84b116ca9b2c087ed32c655c3a"
     },
     "code-walk": {
-      "deployedHash": "00837fe1072fdaddbfe56623a38e12bcf7ee8fce"
+      "deployedHash": "30f8a40e5ca3f6823ec4db7fc10722fa4eba186c"
     },
     "insight-diagram": {
-      "deployedHash": "aba4d6b54d213857db580f3d3c760f1d45b27e79"
+      "deployedHash": "cb80043f9754ebe50a1bc43c34c4b378454c4819"
     }
   }
 }
