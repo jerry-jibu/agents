@@ -1,0 +1,14 @@
+{
+  "skillsRoot": "~/.agents/skills",
+  "skillsExtra": [],
+  "agentsDir": "~/.zcode/agents",
+  "agentsCount": 10,
+  "mcp": {
+    "configPath": "~/.zcode/cli/config.json",
+    "key": "mcp.servers",
+    "entry": "http://localhost:8228/mcp",
+    "handshake": "http"
+  },
+  "verifiedAt": "2026-11-07",
+  "unverified": []
+}

@@ -1,0 +1,14 @@
+{
+  "skillsRoot": "~/.agents/skills",
+  "skillsExtra": [],
+  "agentsDir": null,
+  "agentsCount": 0,
+  "mcp": {
+    "configPath": "~/.deepseek/mcp.json",
+    "key": "mcpServers",
+    "entry": "stdio: npm run mcp (sideshow repo)",
+    "handshake": "stdio"
+  },
+  "verifiedAt": "2026-11-07",
+  "unverified": ["mcp.configPath"]
+}

@@ -1,0 +1,15 @@
+{
+  "mcp": {
+    "servers": {
+      "sideshow": {
+        "type": "http",
+        "url": "http://localhost:8228/mcp"
+      }
+    }
+  },
+  "plugins": {
+    "enabledPlugins": {
+      "excalidraw@zcode-plugins-official": true
+    }
+  }
+}

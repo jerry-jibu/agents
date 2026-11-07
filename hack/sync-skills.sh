@@ -265,6 +265,7 @@ restore_from_plan() { # $1 = plan file ("zone<TAB>srcdir<TAB>name"); guard -> ma
   discard node copy: hack/sync-skills.sh restore --force   (after confirming discard)"
   fi
   if [ "$guard_drifts" -gt 0 ]; then warn "--force: overwriting $guard_drifts drifted dir(s) (logged)"; fi
+  mkdir -p "$NODE_SKILLS"               # fresh machine: parent chain may not exist (rsync 2.6.9 won't create it)
   local hashbatch
   hashbatch="$(mktemp "${TMPDIR:-/tmp}/lock.newhash.XXXXXX")"
   local count=0 sec

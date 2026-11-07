@@ -1,0 +1,14 @@
+{
+  "skillsRoot": "~/.agents/skills",
+  "skillsExtra": [],
+  "agentsDir": "~/.gemini/config/agents",
+  "agentsCount": 10,
+  "mcp": {
+    "configPath": "~/.gemini/config/mcp.json",
+    "key": "mcpServers",
+    "entry": "stdio: npm run mcp (sideshow repo)",
+    "handshake": "stdio"
+  },
+  "verifiedAt": "2026-11-07",
+  "unverified": ["mcp.configPath", "skills.path"]
+}

@@ -1,0 +1,14 @@
+{
+  "skillsRoot": "~/.agents/skills",
+  "skillsExtra": ["~/.claude/skills"],
+  "agentsDir": "~/.claude/agents",
+  "agentsCount": 10,
+  "mcp": {
+    "configPath": "~/.claude.json",
+    "key": "mcpServers",
+    "entry": "stdio: npm run mcp (sideshow repo)",
+    "handshake": "stdio"
+  },
+  "verifiedAt": "2026-11-07",
+  "unverified": ["skills.path"]
+}
