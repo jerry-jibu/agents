@@ -1,8 +1,26 @@
 # Bug 修复工作流（Bug-Fix Workflow）
 
-> 适用范围：本项目所有缺陷与回归问题。流程骨架自 agent-data-workspace 仓库的交付实践沉淀，门禁与示例已适配本仓库（Go 服务 + GPFS/EE 存储底座）。
-> 技能映射：[`/diagnosing-bugs`](#阶段-2根因分析) → issue → [`/implement`](#阶段-4agent-实现)（内驱 [`/tdd`](#阶段-4agent-实现)）→ [`/code-review`](#阶段-6合并与关闭)。
-> 配套文档：[issue-tracker.md](issue-tracker.md)（gh 命令约定）、[triage-labels.md](triage-labels.md)（标签词汇）。
+> 适用范围：任意软件项目的缺陷与回归问题。与 [feature-workflow.md](feature-workflow.md) 共享门禁与合并纪律。
+> 骨架：取证 → issue → 根因 → 方案决策（破坏性方案必经 egm 设计槽位）→ 实现 → 门禁 → 关闭（轻量偏差评审）→ 回归资产沉淀。
+> 技能映射（**直写技能名**；上游改名时全局替换并重跑 `hack/doctor.sh`）：
+> [`/diagnosing-bugs`](#阶段-2根因分析) → issue → 方案决策（轻量 `/egm-brainstorm`，破坏性必经）→ [`/implement`](#阶段-4agent-实现)（内驱 [`/tdd`](#阶段-4agent-实现)）→ [`/code-review`](#阶段-6合并与关闭) → **轻量偏差评审：`/egm-review` 单轮**。
+> 配套文档：[issue-tracker.md](issue-tracker.md)（gh 命令约定）、[triage-labels.md](triage-labels.md)（标签词汇）——**由 `/setup-matt-pocock-skills` 在目标项目初始化产生，本 repo 不 track**。
+
+## 前置条件
+
+> **目标项目需先执行 `/setup-matt-pocock-skills` 初始化**（产生 issue-tracker.md、
+> triage-labels.md 等配套）。本模板只引用不携带。
+
+## 项目占位符（套用时逐项替换）
+
+| 占位符 | 含义 | 示例 |
+|---|---|---|
+| `{{BUILD_CMD}}` / `{{TEST_CMD}}` | 构建 / 全量测试命令 | `go build ./... && go test ./pkg/...` |
+| `{{DOCS_GATE}}` | 文档门禁命令（如有） | `make docs-check` |
+| `{{E2E_GATE}}` | 测试环境最小冒烟步骤 | 部署手册中的最小验证序列 |
+| `{{SERVICE_LOGS}}` | 服务日志取证入口 | `journalctl -u <service>`、容器 logs |
+| `{{TROUBLESHOOTING_MANUAL}}` | 排障手册/运维手册链接 | `docs/reference/…`、runbook |
+| `{{SHARED_ENV_WARNING}}` | 共享测试环境的破坏性操作红线 | 重启/卸载/全量迁移需维护者决策 |
 
 ## 核心原则：GitHub Issue 是协作的唯一枢纽
 
@@ -12,7 +30,7 @@
 |---|---|
 | **有迹可循** | 每个阶段结束，该阶段的关键产出**必须以 comment 形式记入 issue**（见下表）。只存在于会话或日志文件里的结论视为未发生。 |
 | **证据先于理论** | 没有能让测试变红的复现（检测器/errno 表/失败日志行），不开修复 PR——`/diagnosing-bugs` 纪律。 |
-| **破坏性操作必须决策** | 共享测试环境（带库/磁带驱动器、GPFS 集群、3 节点 etcd）上的重启、卸载、全量迁移跑：在 issue 里声明影响面并以选项形式等维护者决策；agent 不得自主执行。 |
+| **破坏性操作必须决策** | 共享测试环境上的重启、卸载、全量迁移跑（`{{SHARED_ENV_WARNING}}`）：在 issue 里声明影响面并以选项形式等维护者决策；agent 不得自主执行。 |
 | **副作用立即立票** | 修复过程中发现的每个新问题 → 独立 issue + 交叉链接回原 issue，不在原 issue 里堆叠。 |
 
 **各阶段必须记入 issue comment 的内容**：
@@ -32,10 +50,11 @@
 
 ```
 [0 取证] → [1 开 issue] → [2 根因分析] → [3 方案决策] → [4 agent 实现]
-              (指纹入正文)   (根因链入评论)   (选项+决策入评论)  (进度入评论)
+              (指纹入正文)   (根因链入评论)   (选项+决策入评论;   (进度入评论)
+                                              破坏性必经 egm 设计槽位)
                                                                         ↓ (TDD red→green)
 [7 回归资产沉淀] ← [6 合并关闭：收尾评论] ← [5 门禁验证：结果入评论] ←──┘
-        ↓ (修复中发现新问题)
+        ↓ (修复中发现新问题)      (含 /egm-review 轻量偏差评审)
      [新 issue + 交叉链接] → 回到 [0]
 ```
 
@@ -43,16 +62,16 @@
 
 ## 阶段 0：问题发现与取证
 
-发现问题的第一时间**只做取证，不做修复**。取证清单按问题类型：
+发现问题的第一时间**只做取证，不做修复**。取证清单按问题类型（入口：`{{SERVICE_LOGS}}` 与 `{{TROUBLESHOOTING_MANUAL}}`）：
 
 | 类型 | 必须采集的证据 |
 |---|---|
-| 服务崩溃 / goroutine panic | panic stack 全文、`journalctl -u jibuarchival` 时间线、触发请求/事件序列、`last reboot` 时间点 |
-| 迁移/磁带语义错误 | `migrator.sh` 失败行、`eeadm task list` / `eeadm migrate` 输出、GPFS `mmfslog` 相关行、涉事文件的 stub/resident 状态 |
-| 数据一致性 | SQLite vs Elasticsearch vs TM API 三方对比（SQL dump + ES 查询 + `eeadm` 清单）、变更前后字节级 hash、操作时间线、并发度 |
+| 服务崩溃 / panic | 崩溃 stack 全文、`{{SERVICE_LOGS}}` 时间线、触发请求/事件序列、`last reboot` 时间点 |
+| 迁移/存储语义错误 | 失败命令行、存储/队列工具输出、涉事对象状态 |
+| 数据一致性 | 权威源 vs 派生存储多方对比、变更前后字节级 hash、操作时间线、并发度 |
 | UI/回归 | Playwright 截图、viewport 尺寸、控制台错误 |
 
-**红线**：如果问题在共享测试环境上复现会导致服务重启/磁带或数据损坏，**取证后立即停跑**，把影响面写进 issue，等维护者决策。
+**红线**：如果复现会导致共享环境重启/数据损坏（`{{SHARED_ENV_WARNING}}`），**取证后立即停跑**，把影响面写进 issue，等维护者决策。
 
 ---
 
@@ -65,14 +84,13 @@
 Part of #<父票或关联票>
 
 ## 现象（含指纹）
-精确的错误行/errno/日志失败摘要。服务 panic 附 goroutine stack 指纹行
-（如 `panic: runtime error: invalid memory address ... [recovered]`）。
+精确的错误行/errno/日志失败摘要。服务崩溃附 stack 指纹行。
 
 ## 复现
 最小复现命令序列（能在测试沙箱/本机跑出的优先）。
 
 ## 根因假设（含置信度）
-高/中/低分级；证据链引用（日志行号、SQL/ES 输出路径、探针输出）。
+高/中/低分级；证据链引用（日志行号、查询输出路径、探针输出）。
 
 ## 修复方向（可选，待讨论确认）
 方案选项 + 推荐 + 理由。破坏性操作在此声明影响面。
@@ -92,19 +110,17 @@ Part of #<父票或关联票>
 
 按成本递增的三层工具，**逐层升级、每层结论以 comment 记入 issue**：
 
-1. **进程内探针**（首选，零风险）：在 `pkg/<模块>` 写临时检测器测试，断言不变量（例：对 `pkg/watch` 的事件处理写状态一致性检测器，对 `pkg/client/TMClient.go` 写契约断言）。让检测器变红 → 定位到具体分支。
-2. **服务端插桩**：临时 `log.Printf`（前缀 `[xxxdbg]`）+ 本机构建复现（`go build ./...` + 本机配置运行或对接测试环境 REST）。取证后**必须删除**调试日志再提交。
-3. **外部系统深水区**（EE / GPFS / 带库侧问题）：
-   - EE 侧：`eeadm task list`、`eeadm tape list`、ITDT 诊断与状态字典——按 [reference/19 排障手册](../reference/19-ee-troubleshooting-itdt.md)逐项核对；
-   - GPFS 侧：`mmhealth`、`mmfslog` 最新错误行、fileset/GPFS 存储池状态——按 [learning/gpfs](../learning/gpfs/README.md) 系列定位；
-   - 产出写入 issue：出错帧、触发命令、关键状态字段（如 `require_replace`、`degraded`）的解读。
+1. **进程内探针**（首选，零风险）：写临时检测器测试，断言不变量（跨模块状态一致性、外部客户端契约）。让检测器变红 → 定位到具体分支。
+2. **服务端插桩**：临时日志（统一前缀 `[xxxdbg]`）+ 本机构建复现（`{{BUILD_CMD}}` + 本机配置运行或对接测试环境）。取证后**必须删除**调试日志再提交。
+3. **外部系统深水区**：按 `{{TROUBLESHOOTING_MANUAL}}` 逐项核对（工具诊断命令、状态字典、日志关键行）；产出写入 issue：出错帧、触发命令、关键状态字段解读。
 
 ---
 
-## 阶段 3：方案决策
+## 阶段 3：方案决策（含 egm 设计槽位）
 
 - **非破坏性修复**（纯代码、测试内验证）：agent 可直接进入阶段 4。
-- **破坏性/影响共享设施**（测试环境重启、带库/驱动器固件操作、全量迁移跑）：在 issue 里以 comment 列出选项（①②③）+ 推荐 + 各自影响面，**等维护者回复决策**。
+- **破坏性/影响共享设施**（`{{SHARED_ENV_WARNING}}` 类操作）：在 issue 里以 comment 列出选项（①②③）+ 推荐 + 各自影响面，**等维护者回复决策**。
+  - **破坏性/跨模块方案必经 egm 设计槽位**：执行 `/egm-brainstorm`（可轻量——单视角或缩小的 reviewer 集），产出 mini `concepts_brief.md`（矛盾点、候选方案、裁决记录）附到 issue；方案复杂度升级为"需要正式设计"时走完整 feature 流（`/egm-draft` → design 文档）。
 - 决策后：维护者的选择留在评论链里；agent 追加一条 comment 同步最终方案摘要，进入阶段 4。
 
 ---
@@ -126,27 +142,29 @@ Part of #<父票或关联票>
 **顺序执行，控制爆炸半径**。每轮门禁跑完，**结果必须 comment 记入 issue**（测试输出摘要、失败分类、日志路径、时间戳）——这是跨会话对比"这轮 vs 上轮"的唯一依据。
 
 ```bash
-# 1) 构建 + 单元测试全套
-go build ./... && go test ./pkg/... -count=1
+# 1) 构建 + 全量测试
+{{BUILD_CMD}}
+{{TEST_CMD}}
 
-# 2) 文档改动时补跑文档门禁（含链接、符号、mermaid、prose 四类）
-make docs-check
+# 2) 文档改动时补跑文档门禁
+{{DOCS_GATE}}
 
-# 3) 触碰迁移/带库路径时，在测试环境按 deploy/ 手册做最小冒烟：
-#    单批 `migrator.sh` 迁移 + `curl /healthz` + 观察任务状态收敛，证据入 issue。
+# 3) 触碰高危路径（feature-workflow 的 {{RISKY_PATHS}}）时，在测试环境做最小冒烟：
+#    {{E2E_GATE}}——证据入 issue。
 ```
 
-- **先窄后宽**：首次验证用 `-run <单测试>` 确认无 panic，再放宽到包级/全套。
+- **先窄后宽**：首次验证用最小范围确认无 panic，再放宽到包级/全套。
 - **失败收敛循环**：分析 → 修 → 重跑，直到核心集 0 失败。每轮的失败分类统计贴回 issue。
-- **红线**：若验证导致共享测试环境重启/损坏，立即停跑、保留现场取证（日志、eeadm/ITDT 输出）、issue 内声明并等决策。
+- **红线**：若验证导致共享环境重启/损坏，立即停跑、保留现场取证、issue 内声明并等决策。
 
 ---
 
-## 阶段 6：合并与关闭
+## 阶段 6：合并与关闭（含轻量偏差评审）
 
 - 提交信息格式：`fix(模块): 一句话（fix/issue-<N> 标题, issue #N）`，正文含根因、修复面、回归测试名，**必须含 `Closes #N`**（合入 main 自动关闭）。
-- **Squash 合并约定**：一个 PR 压成一个 commit。PR 标题即 squash commit message（须符合上列 conventional 格式）；`Closes/Fixes #N` 引用写入 **PR 正文**（合入随 squash commit 关票）；分支内按切片的多提交历史不要求改写。
-- 关闭前核对：全套 `go test ./pkg/...` 绿；issue 的 TDD 验收标准逐条勾选；无未剥离的调试代码；无卷入他人文件。
+- **Squash 合并约定**：一个 PR 压成一个 commit。PR 标题即 squash commit message；`Closes/Fixes #N` 引用写入 **PR 正文**；分支内按切片的多提交历史不要求改写。
+- **轻量偏差评审（egm 阶段）**：合并前执行 `/egm-review` 单轮——核对实现与阶段 3 方案（及 mini concepts_brief，如适用）的偏差；偏差归因三选一：实现更优（回写方案记录）、无伤大雅（记录接受）、方案被违反（回到阶段 3 重新决策）。
+- 关闭前核对：`{{TEST_CMD}}` 绿；issue 的 TDD 验收标准逐条勾选；无未剥离的调试代码；无卷入他人文件。
 - **关闭评论（收尾记录）**必须包含：
   1. 修复 commit 链接；
   2. 验证证据摘要（门禁日志关键行 / 测试统计 / 前后对比）；
@@ -161,11 +179,11 @@ make docs-check
 
 | 资产 | 位置 | 说明 |
 |---|---|---|
-| 不变量检测器 | `pkg/**/*_test.go` | 断言跨模块状态一致性的临时探针转正 |
-| 契约/表驱动测试 | 同上 | `TMClient` 等外部客户端的响应映射测试 |
-| 排障 SOP 更新 | `docs/reference/19-ee-troubleshooting-itdt.md` 等 | 新故障指纹与处置路径回写手册 |
-| 部署/运维手册更新 | `deploy/` | 新发现的现网陷阱与规避步骤 |
-| 策略样例 | `jbfs_policy_template/`、`policy.json` | 涉及策略行为的修复同步样例 |
+| 不变量检测器 | 测试目录 | 断言跨模块状态一致性的临时探针转正 |
+| 契约/表驱动测试 | 同上 | 外部客户端的响应映射测试 |
+| 排障 SOP 更新 | `{{TROUBLESHOOTING_MANUAL}}` | 新故障指纹与处置路径回写手册 |
+| 部署/运维手册更新 | deploy/runbook | 新发现的现网陷阱与规避步骤 |
+| 策略/配置样例 | 项目对应样例位置 | 涉及策略行为的修复同步样例 |
 
 沉淀检查（关闭评论需逐项回答）：
 - [ ] 本次 bug 的复现路径是否已有测试长期守住？
@@ -179,7 +197,7 @@ make docs-check
 
 ```bash
 # 开 issue（模板见阶段 1）
-gh issue create --label "ready-for-agent,area/storage,bug" --title "..." --body-file - << 'EOF'
+gh issue create --label "ready-for-agent,area/<模块>,bug" --title "..." --body-file - << 'EOF'
 ...
 EOF
 
@@ -192,7 +210,7 @@ EOF
 # 修复分支
 git checkout -b fix/issue-<N>-<slug>
 
-# 本地门禁：命令与最小冒烟步骤见「阶段 5：验证门禁」（不复制命令，防两处漂移）
+# 本地门禁：命令见占位符表（{{BUILD_CMD}} / {{TEST_CMD}} / {{DOCS_GATE}} / {{E2E_GATE}}，不复制防漂移）
 
 # 已修 bug 溯源索引（issue 即唯一记录，不建 docs 镜像目录）
 gh issue list --label bug --state closed --json number,title,closedAt \
