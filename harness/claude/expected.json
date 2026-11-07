@@ -1,6 +1,7 @@
 {
   "skillsRoot": "~/.agents/skills",
   "skillsExtra": ["~/.claude/skills"],
+  "skillsExtraMode": "symlink-farm",
   "agentsDir": "~/.claude/agents",
   "agentsCount": 10,
   "mcp": {
@@ -10,5 +11,5 @@
     "handshake": "stdio"
   },
   "verifiedAt": "2026-11-07",
-  "unverified": ["skills.path"]
+  "unverified": []
 }

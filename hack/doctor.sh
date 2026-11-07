@@ -248,6 +248,9 @@ print("VERIFIED_AT\t" + va)
 print("EXPIRED\t" + ("1" if expired else "0"))
 for u in e.get("unverified", []):
     print("UNVERIFIED\t" + u)
+print("EXTRAS_MODE\t" + e.get("skillsExtraMode", ""))
+for x in e.get("skillsExtra", []):
+    print("EXTRAS_DIR\t" + x)
 m = e.get("mcp") or {}
 cp = xp(m.get("configPath"))
 if cp and "mcp.configPath" not in e.get("unverified", []):
@@ -258,6 +261,7 @@ if ad:
     print("AGENTS_DIR\t" + ad + "\t" + str(e.get("agentsCount", 0)))
 PY
     verified_line="$(grep '^VERIFIED_AT' "$HARNESS_EVAL" | cut -f2)"
+    extras_mode="$(awk -F'\t' '$1=="EXTRAS_MODE" {print $2}' "$HARNESS_EVAL")"
     if [ "$(grep -c '^EXPIRED	1' "$HARNESS_EVAL" || true)" -gt 0 ]; then
       result WARN c7 "$hname: mechanism notes older than 90 days (verified $verified_line) — re-verify"
       c7_bad=$((c7_bad + 1))
@@ -292,6 +296,21 @@ PY
             if [ "$actual" != "$acount" ]; then
               result ERROR c7 "$hname: agents count $actual != expected $acount (fix: sync-agents.sh deploy)"
               c7_bad=$((c7_bad + 1))
+            fi
+          fi ;;
+        EXTRAS_DIR)
+          if [ "$extras_mode" = symlink-farm ]; then
+            xdir="${val/#\~/$HOME}"
+            if [ ! -d "$xdir" ]; then
+              result ERROR c7 "$hname: skillsExtra dir missing: $xdir (fix: sync-skills.sh restore)"
+              c7_bad=$((c7_bad + 1))
+            else
+              xcount="$(find "$xdir" -maxdepth 1 -type l | wc -l | tr -d ' ')"
+              ndirs="$(ls "$NODE_SKILLS" | wc -l | tr -d ' ')"
+              if [ "$xcount" != "$ndirs" ]; then
+                result ERROR c7 "$hname: symlink farm stale ($xcount links != $ndirs deployed — fix: sync-skills.sh restore)"
+                c7_bad=$((c7_bad + 1))
+              fi
             fi
           fi ;;
       esac

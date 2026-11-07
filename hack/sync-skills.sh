@@ -33,6 +33,7 @@ NODE_SKILLS="$HOME/.agents/skills"
 ZCODE_AGENTS="$HOME/.zcode/agents"
 LOCK="$REPO_ROOT/.skill-lock.json"
 SOURCES_CONF="$REPO_ROOT/hack/sources.conf"
+HARNESS_CONF="$REPO_ROOT/harness"
 
 FORCE=0
 log()  { printf '\033[1;34m==>\033[0m %s\n' "$*"; }
@@ -287,6 +288,43 @@ restore_from_plan() { # $1 = plan file ("zone<TAB>srcdir<TAB>name"); guard -> ma
   lock_apply_hashes "$hashbatch"
   rm -f "$baselines" "$locknames" "$hashbatch"
   log "restored $count skills -> $NODE_SKILLS"
+  deploy_harness_extras
+}
+
+# ---- per-harness skill extras (design: harness 专属物化到各自已验证路径) --------
+# Driven by harness/<name>/expected.json: skillsExtra (dirs) + skillsExtraMode.
+# Mode "symlink-farm": one relative symlink per deployed skill into the extra
+# dir (single-discovery version of the old zcode farm — claude reads ONLY its
+# own ~/.claude/skills, verified 2026-11-07; see harness/claude/NOTES.md).
+deploy_harness_extras() {
+  local ef hname extra_dir d n count
+  shopt -s nullglob
+  for ef in "$HARNESS_CONF"/*/expected.json; do
+    hname="$(basename "$(dirname "$ef")")"
+    eval "$(python3 - "$ef" <<'PY'
+import json, sys, shlex
+e = json.load(open(sys.argv[1]))
+print("EXTRAS=" + shlex.quote("\n".join(e.get("skillsExtra", []))))
+print("EXTRAS_MODE=" + shlex.quote(e.get("skillsExtraMode", "")))
+PY
+)"
+    if [ "$EXTRAS_MODE" != "symlink-farm" ]; then continue; fi
+    for extra_dir in $EXTRAS; do
+      extra_dir="${extra_dir/#\~/$HOME}"
+      mkdir -p "$extra_dir"
+      find "$extra_dir" -maxdepth 1 -type l ! -exec test -e {} \; -delete 2>/dev/null || true
+      count=0
+      for d in "$NODE_SKILLS"/*/; do
+        if [ -d "$d" ]; then
+          n="$(basename "$d")"
+          ln -sfn "../../.agents/skills/$n" "$extra_dir/$n"
+          count=$((count + 1))
+        fi
+      done
+      log "harness[$hname]: refreshed $count skill links -> $extra_dir"
+    done
+  done
+  shopt -u nullglob
 }
 
 cmd_restore() { # [--force] [name...]

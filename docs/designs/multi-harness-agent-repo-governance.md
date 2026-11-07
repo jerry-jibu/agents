@@ -162,7 +162,7 @@ in-house/skills/<name>/ ──（repo 内编辑即 git 变更）──▶ [git r
 | Harness | Skills | Agents（personas） | MCP |
 |---|---|---|---|
 | zcode | **零部署**：原生读 `~/.agents/skills`（Q1 结论）；`~/.zcode/skills` 清空（79 条 symlinks 删除，实测全为符号链接） | `~/.zcode/agents/`（已验证 live） | `~/.zcode/cli/config.json` → `mcp.servers`（http entry；`~/.agents/mcp.json` 为 fallback） |
-| claude | `~/.claude/skills/`——**待一次会话验证**（experimental） | `~/.claude/agents/`（实测 10 条） | `~/.claude.json` → `mcpServers`（stdio） |
+| claude | `~/.claude/skills/`——**已验证**（2026-11-07：只读自有路径，不读共享根；restore 按 expected.json 维护 symlink 农场，104 条对齐） | `~/.claude/agents/`（实测 10 条） | `~/.claude.json` → `mcpServers`（stdio） |
 | antigravity | 待验证（experimental；参照 dsh/zcode 是否也读 `~/.agents/skills`） | `~/.gemini/config/agents/`（实测 10 条，与 repo 一致） | `~/.gemini/config/mcp.json`（文件名待 Q2'） |
 | deepseek | **零部署**：原生读 `~/.agents/skills`（dsh 发现根优先级权重 rank：project `.agents/skills`=200 最高、`~/.dsh/skills`=400、`~/.agents/skills`=500，数值越小越优先） | **不适用**（运行时委托；无个人目录；`~/.deepseek/agents/` 死配置删除） | dsh 的 MCP 配置在 `~/.dsh/` 体系内——`~/.deepseek/mcp.json` 同属路径猜测，**待一次 dsh 会话验证**后修正 |
 
