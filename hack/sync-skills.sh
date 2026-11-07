@@ -45,19 +45,8 @@ trim() {
   printf '%s' "$s"
 }
 
-# deployedHash baseline algorithm (pinned in the design; sort -z degrades to
-# find order when the local sort lacks it — order is tree-deterministic).
-if sort -z </dev/null >/dev/null 2>&1; then
-  hash_dir() {
-    find "$1" -type f ! -name .DS_Store -print0 | sort -z |
-      xargs -0 shasum 2>/dev/null | shasum | awk '{print $1}'
-  }
-else
-  hash_dir() {
-    find "$1" -type f ! -name .DS_Store -print0 |
-      xargs -0 shasum 2>/dev/null | shasum | awk '{print $1}'
-  }
-fi
+# deployedHash baseline algorithm — shared with doctor.sh (design: 共用函数)
+source "$REPO_ROOT/hack/lib-hash.sh"
 
 url_to_sid() { # git@github.com:owner/repo.git -> github.com/owner/repo
   local u="$1"

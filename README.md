@@ -1,44 +1,104 @@
 # agents
 
-Centralized AI Agent Skills repository (`skills/`), shared across Claude Code (`~/.claude/skills`) and Gemini Antigravity (`~/.gemini/config/skills`).
+Personal agent-environment repository: skills, subagent personas, MCP configs,
+and delivery workflows — governed as a git-first backup & deployment unit for
+four harnesses: **ZCode**, **Claude Code**, **Antigravity**, **deepseek-harness**.
 
-## Directory Structure
+> Governance design: [docs/designs/multi-harness-agent-repo-governance.md](docs/designs/multi-harness-agent-repo-governance.md)
+> (Rev.4 Approved — dual-zone layout, git as single source of truth, delta-guarded
+> materialization, expectation-based doctor).
 
-- `skills/` — All agent skills (`SKILL.md`, `references/`, `assets/`, `scripts/`), including:
-  - **`code-walk`**: 4-Tier Deep Dive Code Walk & Modifiability Engine (with Dual-Axis Adversarial Audit, Blast Radius Matrix, and interactive Document/Slideshow HTML templates).
-  - **`archify`** / **`diagram-design`**: Validated architecture, topology, sequence, and state diagrams.
-  - **`grill-me`** / **`grilling`**: Design tree interview & stress-testing.
-  - **`teach`** / **`retro`** / **`skill-creator`**: Interactive teaching, session retrospectives, and skill authoring.
-  - **`code-review`** / **`refactor`** / **`tdd`**: Multi-axis code review, refactoring, and test-driven development.
-  - **`egm-*`**: Elephant-Goldfish Model suite (brainstorm → draft → review → review-loop → resolve, plus bootstrap & drift-report), installed from [google/elephant-goldfish-model](https://github.com/google/elephant-goldfish-model). Each skill carries its own copies of the repo's shared `agents/`, `resources/`, `docs/` trees (SKILL.md paths resolve against the plugin root).
-- `.skill-lock.json` — Installed skill lock metadata.
-- `agents/` — Canonical subagent definitions (markdown: `name`/`description`/`tools` frontmatter + system-prompt body), deployed to every agent harness on this node. Includes the **`egm-*`** Goldfish reviewer personas (design, structural, style, comprehension, codebase-details, implementation-readiness, inventive-catalyst, zoom-out) plus orchestrators (synthesizer, bootstrap-orchestrator).
-- `mcps/` — MCP service definitions (`<name>.json`): repo/workdir for the backing code, the background `service` (command + port), and `http`/`stdio` harness-facing entries. Currently: **sideshow** (web server on `localhost:8228`, HTTP MCP for zcode, stdio MCP for the rest).
-- `hack/` — Node skill/agent/MCP sync tooling:
-  - **`sync-skills.sh`**: `pull` (install/refresh skills from remote sources onto this node + mirror into this repo), `backup` (node → repo, additive), `snapshot` (backup + git commit), `restore [skill...]` (repo → node), `agents` (regenerate subagent defs from skills, collect + deploy), `list`.
-  - **`sync-agents.sh`**: `collect` (node `~/.zcode/agents` → repo store), `deploy [zcode|claude|antigravity|deepseek]` (repo store → harness agents dirs, converting `tools` frontmatter: array for zcode/antigravity, comma-list for claude/deepseek), `list` (per-harness deployment status).
-  - **`sync-mcps.sh`**: `sync` (clone/fast-forward repos + install deps), `start` / `stop` (background services via nohup-style daemonize; pid+log in `~/.node-mcps/`), `status`, `configure [harness]` (merge entries into zcode/claude/antigravity/deepseek MCP configs).
-  - **`sources.conf`**: remote skill sources, one per line as `url|skills_subdir|shared_dirs` (subdir may be comma-separated; nested category dirs are walked). Sources: `google/elephant-goldfish-model`, `mattpocock/skills`, `tt-a1i/archify`, `modem-dev/sideshow`.
+## Data-flow law
+
+**The git repo is the single source of truth; node (`~/.agents/skills`) is a pure
+deployment target.** Edits happen in the repo; nodes sync via git
+commit/push/pull; `pull` runs on ONE authoritative node only.
+
+```text
+upstream ──pull──▶ vendor/github.com/<owner>/<repo>/<skill>/   (pull-only mirror)
+in-house/skills/  ──(edit in repo, git commit)──▶ [git repo = authority]
+[git repo] ──restore (delta-guarded)──▶ node ~/.agents/skills/ (flat, shared root)
+node drift ──adopt (diff + confirm)──▶ repo (harvest / promote / fork)
+```
+
+## Directory structure
+
+- `vendor/github.com/<owner>/<repo>/<skill>/` — upstream mirrors, pull-only
+  (mattpocock/skills, addyosmani/agent-skills, google/elephant-goldfish-model,
+  tt-a1i/archify, modem-dev/sideshow, cathrynlavery/diagram-design + frozen
+  leftovers of vercel-labs/*, anthropics/skills, GoogleChrome/modern-web-guidance,
+  yizhiyanhua-ai/fireworks-tech-graph). Per-skill granularity: skills an upstream
+  deletes survive here.
+- `vendor/unknown/` — 16 frozen, unattributed skills (`FROZEN.md` manifest;
+  pull never touches; promote via `adopt` or retire).
+- `in-house/skills/` — self-authored skills (code-walk, code-to-spec,
+  architecture-diagram, insight-diagram). Git is the version record — not in the
+  lock. `depends-on:` frontmatter declares skill dependencies.
+- `agents/` — canonical subagent personas (10 egm-*.md), deployed to
+  zcode/claude/antigravity (deepseek runtime-delegates — no personal dir).
+- `mcps/` — MCP service definitions. Currently **sideshow** (web server on
+  `localhost:8228`, HTTP MCP for zcode, stdio for the rest).
+- `harness/<name>/` — per-harness governance: `NOTES.md` (verified mechanism
+  notes + dates), `config/` (credential-scanned backups), `expected.json`
+  (Stage 2: machine-readable expectation state, doctor `--live` SSOT).
+- `docs/agents/` — generalized feature/bugfix delivery workflow templates.
+- `docs/designs/` — governance design documents.
+- `.skill-lock.json` — v4: sources registry (live + `frozen: true`), per-skill
+  commit anchors (`commit`/`pulledAt`), deployedHash baselines for the delta
+  guard (`skills` + `inHouse` sections).
+- `hack/` — tooling:
+  - **`sync-skills.sh`**: `pull [source-id]` (upstream → vendor + lock anchors +
+    auto-restore; worktree-clean guard; per-skill mirror; collision hard-fail),
+    `restore [--force] [name...]` (repo → node, delta-guarded by deployedHash
+    baselines; in-house wins name collisions; frozen zones never written to
+    lock), `adopt <name>` (node drift → git: harvest/promote/fork with
+    `forked-from` marker), `collect` (harness config backups, credential-
+    scanned), `agents` (regenerate `~/.zcode/agents` personas), `list`.
+  - **`doctor.sh`**: expectation-vs-reality checks — v0 static: C1 frontmatter
+    (in-house=error / mirror=warn), C2 depends-on resolution, C3 zcode skills
+    dedup, C4 repo↔node parity + content drift, C6 strays; `--fix` whitelist;
+    Stage 2 adds C5 lock consistency + C7 `--live` MCP handshake.
+  - **`lib-hash.sh`**: shared deployedHash algorithm (sync + doctor).
+  - **`sync-agents.sh`**: `collect` / `deploy [zcode|claude|antigravity]` / `list`.
+  - **`sync-mcps.sh`**: MCP service lifecycle + per-harness config writing.
+  - **`sources.conf`**: `url|skills_subdir|shared_dirs` per line
+    (egm, mattpocock, archify, sideshow; addyosmani + diagram-design join in Stage 2).
 
 ## Node layout
 
-Real skill dirs live in `~/.agents/skills/` (shared across tools); tool-specific
-skill dirs are symlinks, e.g. `~/.zcode/skills/<name> -> ../../.agents/skills/<name>`.
-Agent definitions deploy to `~/.zcode/agents/`, `~/.claude/agents/`,
-`~/.gemini/config/agents/`, `~/.deepseek/agents/` (paths overridable via env
-`ZCODE_AGENTS_DIR`, `CLAUDE_AGENTS_DIR`, `ANTIGRAVITY_AGENTS_DIR`, `DEEPSEEK_AGENTS_DIR`).
-MCP configs live at `~/.zcode/cli/config.json` (`mcp.servers`), `~/.claude.json`
-(`mcpServers`), `~/.gemini/config/mcp.json` (`mcpServers`), `~/.deepseek/mcp.json`
-(`mcpServers`) — overridable via `*_MCP_CONFIG` env vars.
+`~/.agents/skills/` is the single user-scope skills root — ZCode and
+deepseek-harness read it natively (zero extra deployment); `~/.zcode/skills/`
+must stay EMPTY (dual-root scanning would duplicate every skill; doctor C3
+enforces). Agent dirs: `~/.zcode/agents/`, `~/.claude/agents/`,
+`~/.gemini/config/agents/` (env-overridable `*_AGENTS_DIR`). MCP configs:
+`~/.zcode/cli/config.json` (`mcp.servers`), `~/.claude.json`,
+`~/.gemini/config/mcp.json`, deepseek path pending verification — see
+`harness/<name>/NOTES.md` for verified mechanics and dates.
 
 ```sh
-# refresh skills + agents on this node from all remote sources, then snapshot:
-hack/sync-skills.sh pull && hack/sync-skills.sh snapshot
+# daily driver (authoritative node):
+hack/sync-skills.sh pull          # upstream -> vendor -> this node (guarded)
+git add -A && git commit          # publish; other nodes: git pull + restore
 
-# add a powerful agent by hand: write agents/<name>.md, then
-hack/sync-agents.sh deploy
+# health:
+hack/doctor.sh                    # static; exit code = error count
 
-# full MCP lifecycle:
-hack/sync-mcps.sh sync && hack/sync-mcps.sh start && hack/sync-mcps.sh configure
-hack/sync-mcps.sh status   # ... stop / start as needed
+# node-side drift (hand-edited a skill on node?):
+hack/sync-skills.sh adopt <name>  # diff + confirm -> into git (or restore --force to discard)
+
+# agents + MCP:
+hack/sync-agents.sh collect && hack/sync-agents.sh deploy
+hack/sync-mcps.sh status          # ... start / stop / configure
 ```
+
+## New machine bootstrap
+
+```sh
+git clone git@github.com:jerry-jibu/agents.git && cd agents
+hack/sync-skills.sh restore       # materialize 104 skills (delta guard is a
+                                  # no-op on an empty node)
+hack/sync-agents.sh deploy && hack/sync-mcps.sh configure
+hack/doctor.sh                    # must exit 0
+```
+
+(Stage 2 replaces the manual sequence with `hack/setup.sh --level 3`.)
