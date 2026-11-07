@@ -27,11 +27,13 @@ RUN_DIR="${MCP_RUN_DIR:-$HOME/.node-mcps}"
 HTTP_HARNESSES=" zcode "   # these get the http entry; others get stdio
 
 # harness configs:  name:config_file:container_key
+# deepseek removed (source-verified 2026-11-07): dsh MCP is configured through
+# the app's Settings UI (ctx.mcpManager, docs/subsystems/mcp.md) — no file-based
+# config exists; ~/.deepseek/mcp.json was a dead guess (deleted).
 HARNESSES=(
   "zcode:${ZCODE_MCP_CONFIG:-$HOME/.zcode/cli/config.json}:mcp.servers"
   "claude:${CLAUDE_MCP_CONFIG:-$HOME/.claude.json}:mcpServers"
   "antigravity:${ANTIGRAVITY_MCP_CONFIG:-$HOME/.gemini/config/mcp.json}:mcpServers"
-  "deepseek:${DEEPSEEK_MCP_CONFIG:-$HOME/.deepseek/mcp.json}:mcpServers"
 )
 
 log()  { printf '\033[1;34m==>\033[0m %s\n' "$*"; }

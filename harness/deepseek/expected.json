@@ -4,11 +4,10 @@
   "agentsDir": null,
   "agentsCount": 0,
   "mcp": {
-    "configPath": "~/.deepseek/mcp.json",
-    "key": "mcpServers",
-    "entry": "stdio: npm run mcp (sideshow repo)",
-    "handshake": "stdio"
+    "configPath": null,
+    "configSurface": "app Settings UI (ctx.mcpManager; docs/subsystems/mcp.md of deepseek-harness) — no file-based config",
+    "verifiedAt": "2026-11-07"
   },
   "verifiedAt": "2026-11-07",
-  "unverified": ["mcp.configPath"]
+  "unverified": []
 }

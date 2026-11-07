@@ -23,9 +23,22 @@ dsh 的 subagent 是运行时委托（in-process / ACP / Claude-Code / Codex ada
 packages/subagent），**无个人 named-subagent 目录**。`~/.deepseek/agents/` 是
 错误猜测（Stage 0 已删除死配置）；`sync-agents.sh` 的 deepseek 目标已移除。
 
-## MCP（待会话验证）
+## MCP（源码级闭合，2026-11-07）
 
-dsh 配置根在 `~/.dsh/`（`$DSH_HOME`）；当前 `~/.deepseek/mcp.json` 属路径猜测
-（Stage 0 保留观察）。**验证方法**：开一个 dsh 会话，确认其 MCP 配置真实读取
-路径（`~/.dsh/` 下何处、格式），结论回填本文件与 expected.json；届时
-`sync-mcps.sh` 的 deepseek 写入路径按结论修正。
+**dsh 无文件级 MCP 配置**——Web/Desktop profile 挂载 `ctx.mcpManager`，服务器
+通过 **App 的 Settings UI** 配置（deepseek-harness 源码
+`docs/subsystems/mcp.md`："It runs servers configured through Settings"；
+ACP 模式下则由连接方在会话内声明，`packages/acp/acp/src/mcp.ts` 的
+`mountAcpMcpServers`，且 stdio `command` 必须绝对路径）。
+`~/.deepseek/mcp.json` 属无效猜测——已删除；`sync-mcps.sh` 的 deepseek 写入
+目标已移除。要在 dsh 里用 sideshow：在 App Settings → MCP 里手动添加
+（stdio：`<绝对路径>/node_modules/.bin/npm run mcp`，sideshow repo 为 cwd；
+或 HTTP：`http://localhost:8228/mcp`）。
+
+## 已知运行时问题（2026-11-07，与 skills repo 无关）
+
+DeepSeek Harness 桌面版 0.2.2-rc.1（11-04 更新）报
+`workspaceController`/`sessionController` unavailable——gateway 活着但核心服务
+未注册；嫌疑为 app 升级后 profile 第三方插件（10-24 安装，0.2.1 时代 API）在
+cordis fail-fast 下中断启动链。fatal 诊断只发往 App 诊断面板不落盘
+（`apps/desktop-host/src/index.ts` 的 process.send fatal）。
