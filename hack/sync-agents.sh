@@ -22,7 +22,6 @@ HARNESSES=(
   "zcode:${ZCODE_AGENTS_DIR:-$HOME/.zcode/agents}:array"
   "claude:${CLAUDE_AGENTS_DIR:-$HOME/.claude/agents}:comma"
   "antigravity:${ANTIGRAVITY_AGENTS_DIR:-$HOME/.gemini/config/agents}:array"
-  "deepseek:${DEEPSEEK_AGENTS_DIR:-$HOME/.deepseek/agents}:comma"
 )
 
 log()  { printf '\033[1;34m==>\033[0m %s\n' "$*"; }
@@ -112,13 +111,14 @@ usage: hack/sync-agents.sh [command]
 commands:
   collect            mirror node ~/.zcode/agents -> repo agents/ (canonical)
   deploy [harness]   repo agents/ -> harness dirs (default: all)
-                     harnesses: zcode claude antigravity deepseek
+                     harnesses: zcode claude antigravity
+                     (deepseek removed: dsh subagents are runtime-delegated,
+                      no personal agents dir — design conflicts C / B2)
   list               repo agents + per-harness deployment status
 
 agent definitions live in agents/ as markdown with name/description/tools
 frontmatter plus the system-prompt body. harness dirs are overridable via
-env: ZCODE_AGENTS_DIR, CLAUDE_AGENTS_DIR, ANTIGRAVITY_AGENTS_DIR,
-DEEPSEEK_AGENTS_DIR.
+env: ZCODE_AGENTS_DIR, CLAUDE_AGENTS_DIR, ANTIGRAVITY_AGENTS_DIR.
 EOF
 }
 

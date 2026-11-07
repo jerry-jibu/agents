@@ -1,696 +1,598 @@
 {
-  "version": 3,
-  "skills": {
-    "vercel-react-best-practices": {
-      "source": "vercel-labs/agent-skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/vercel-labs/agent-skills.git",
-      "skillPath": "skills/react-best-practices/SKILL.md",
-      "skillFolderHash": "b86e3967846abb5beeeb874410d8f2ebf6a3f5e1",
-      "installedAt": "2026-01-25T00:37:40.761Z",
-      "updatedAt": "2026-01-25T00:37:40.761Z"
+  "version": 4,
+  "sources": {
+    "github.com/google/elephant-goldfish-model": {
+      "url": "git@github.com:google/elephant-goldfish-model.git"
     },
-    "web-design-guidelines": {
-      "source": "vercel-labs/agent-skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/vercel-labs/agent-skills.git",
-      "skillPath": "skills/web-design-guidelines/SKILL.md",
-      "skillFolderHash": "3116f3e62dbd02b44a598b1aa690d2a8938e8f89",
-      "installedAt": "2026-01-25T00:37:41.223Z",
-      "updatedAt": "2026-01-25T00:37:41.223Z"
+    "github.com/mattpocock/skills": {
+      "url": "git@github.com:mattpocock/skills.git"
     },
-    "fireworks-tech-graph": {
-      "source": "yizhiyanhua-ai/fireworks-tech-graph",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/yizhiyanhua-ai/fireworks-tech-graph.git",
-      "skillPath": "SKILL.md",
-      "skillFolderHash": "9e68925d130fe6c0cb3b894e520a1ef81e3ac58c",
-      "installedAt": "2026-05-15T00:42:36.228Z",
-      "updatedAt": "2026-05-15T00:42:36.228Z"
+    "github.com/tt-a1i/archify": {
+      "url": "git@github.com:tt-a1i/archify.git"
     },
-    "find-skills": {
-      "source": "vercel-labs/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/vercel-labs/skills.git",
-      "skillPath": "skills/find-skills/SKILL.md",
-      "skillFolderHash": "3013fdeb8a11b10b1eb795ec3ae8bfca38f7c26d",
-      "installedAt": "2026-05-15T00:42:40.334Z",
-      "updatedAt": "2026-05-15T00:42:40.334Z"
+    "github.com/modem-dev/sideshow": {
+      "url": "git@github.com:modem-dev/sideshow.git"
     },
-    "ask-matt": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/engineering/ask-matt/SKILL.md",
-      "skillFolderHash": "da068f2392e1144469cbc602ffff96ef47881a88",
-      "pluginName": "mattpocock-skills",
-      "installedAt": "2026-07-01T04:58:33.728Z",
-      "updatedAt": "2026-10-06T07:35:46.154Z"
+    "github.com/addyosmani/agent-skills": {
+      "url": "git@github.com:addyosmani/agent-skills.git"
     },
-    "codebase-design": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/engineering/codebase-design/SKILL.md",
-      "skillFolderHash": "07ba1cd60efc12d0d3a083005c1d9651cf15e39a",
-      "pluginName": "mattpocock-skills",
-      "installedAt": "2026-07-01T04:58:33.731Z",
-      "updatedAt": "2026-10-06T07:35:46.157Z"
+    "github.com/cathrynlavery/diagram-design": {
+      "url": "git@github.com:cathrynlavery/diagram-design.git"
     },
-    "diagnosing-bugs": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/engineering/diagnosing-bugs/SKILL.md",
-      "skillFolderHash": "de4236cf34757c4e9ea7afe78d46c023213ff254",
-      "pluginName": "mattpocock-skills",
-      "installedAt": "2026-07-01T04:58:33.733Z",
-      "updatedAt": "2026-10-06T07:35:46.158Z"
+    "github.com/vercel-labs/agent-skills": {
+      "url": "https://github.com/vercel-labs/agent-skills.git",
+      "frozen": true
     },
-    "domain-modeling": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/engineering/domain-modeling/SKILL.md",
-      "skillFolderHash": "ea30ee454ba264543dbe40737973b1a5afb9f0e6",
-      "pluginName": "mattpocock-skills",
-      "installedAt": "2026-07-01T04:58:33.734Z",
-      "updatedAt": "2026-10-06T07:35:46.160Z"
+    "github.com/vercel-labs/skills": {
+      "url": "https://github.com/vercel-labs/skills.git",
+      "frozen": true
     },
-    "grill-me": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/productivity/grill-me/SKILL.md",
-      "skillFolderHash": "3df14e2d3a89459bf300614be9247e3ce74798f8",
-      "pluginName": "mattpocock-skills",
-      "installedAt": "2026-07-01T04:58:33.736Z",
-      "updatedAt": "2026-10-06T07:35:46.161Z"
+    "github.com/yizhiyanhua-ai/fireworks-tech-graph": {
+      "url": "https://github.com/yizhiyanhua-ai/fireworks-tech-graph.git",
+      "frozen": true
     },
-    "grill-with-docs": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/engineering/grill-with-docs/SKILL.md",
-      "skillFolderHash": "eedaf2562c83155115e9c649fa3ecaac2e10e81d",
-      "pluginName": "mattpocock-skills",
-      "installedAt": "2026-07-01T04:58:33.737Z",
-      "updatedAt": "2026-10-06T07:35:46.163Z"
+    "github.com/GoogleChrome/modern-web-guidance": {
+      "url": "https://github.com/GoogleChrome/modern-web-guidance.git",
+      "frozen": true
     },
-    "grilling": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/productivity/grilling/SKILL.md",
-      "skillFolderHash": "f0732035b8b1b60ae39454e4191caef32fa91903",
-      "pluginName": "mattpocock-skills",
-      "installedAt": "2026-07-01T04:58:33.738Z",
-      "updatedAt": "2026-10-06T07:35:46.165Z"
-    },
-    "handoff": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/productivity/handoff/SKILL.md",
-      "skillFolderHash": "2242e8f05424b8c2ae94194a90d97b88d16108ec",
-      "pluginName": "mattpocock-skills",
-      "installedAt": "2026-07-01T04:58:33.740Z",
-      "updatedAt": "2026-10-06T07:35:46.166Z"
-    },
-    "improve-codebase-architecture": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/engineering/improve-codebase-architecture/SKILL.md",
-      "skillFolderHash": "39bd9cc130f7dfcc4e3ea0b3613f6ebed0d0ad2b",
-      "pluginName": "mattpocock-skills",
-      "installedAt": "2026-07-01T04:58:33.742Z",
-      "updatedAt": "2026-10-06T07:35:46.170Z"
-    },
-    "prototype": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/engineering/prototype/SKILL.md",
-      "skillFolderHash": "e41d92e171f074a2b6887d8f6faca4a15c83d1ca",
-      "pluginName": "mattpocock-skills",
-      "installedAt": "2026-07-01T04:58:33.743Z",
-      "updatedAt": "2026-10-06T07:35:46.173Z"
-    },
-    "setup-matt-pocock-skills": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/engineering/setup-matt-pocock-skills/SKILL.md",
-      "skillFolderHash": "b1568cde855a189b16e5d7dd8a0fa4c3f156bc2e",
-      "pluginName": "mattpocock-skills",
-      "installedAt": "2026-07-01T04:58:33.745Z",
-      "updatedAt": "2026-10-06T07:35:46.178Z"
-    },
-    "tdd": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/engineering/tdd/SKILL.md",
-      "skillFolderHash": "bf1bf5ffcd63aa8abce830f2955a853c121fb463",
-      "pluginName": "mattpocock-skills",
-      "installedAt": "2026-07-01T04:58:33.748Z",
-      "updatedAt": "2026-10-06T07:35:46.181Z"
-    },
-    "teach": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/productivity/teach/SKILL.md",
-      "skillFolderHash": "2ab11f2f51f3c29771edb5d4258d807a49462491",
-      "pluginName": "mattpocock-skills",
-      "installedAt": "2026-07-01T04:58:33.750Z",
-      "updatedAt": "2026-10-06T07:35:46.186Z"
-    },
-    "triage": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/engineering/triage/SKILL.md",
-      "skillFolderHash": "4cb951d62ecccaed601cdc5f9a1b7b3d8a799635",
-      "pluginName": "mattpocock-skills",
-      "installedAt": "2026-07-01T04:58:33.755Z",
-      "updatedAt": "2026-10-06T07:35:46.202Z"
-    },
-    "git-guardrails-claude-code": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/misc/git-guardrails-claude-code/SKILL.md",
-      "skillFolderHash": "ceed97af09633b300826d0ca0b1464c527ec9a35",
-      "installedAt": "2026-07-01T04:58:33.762Z",
-      "updatedAt": "2026-10-06T07:35:46.216Z"
-    },
-    "implement": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/engineering/implement/SKILL.md",
-      "skillFolderHash": "f07d230f645fc9ac390cf13a450bbff12ad791a3",
-      "pluginName": "mattpocock-skills",
-      "installedAt": "2026-07-01T04:58:33.763Z",
-      "updatedAt": "2026-10-06T07:35:46.168Z"
-    },
-    "loop-me": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/in-progress/loop-me/SKILL.md",
-      "skillFolderHash": "a0dfdc3562686d920900973b50289b36e2f7eafe",
-      "installedAt": "2026-07-01T04:58:33.764Z",
-      "updatedAt": "2026-10-06T07:35:46.218Z"
-    },
-    "migrate-to-shoehorn": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/misc/migrate-to-shoehorn/SKILL.md",
-      "skillFolderHash": "0aea91a3599a4bf7aeec17e3262d4cbcfcbeec23",
-      "installedAt": "2026-07-01T04:58:33.766Z",
-      "updatedAt": "2026-10-06T07:35:46.219Z"
-    },
-    "resolving-merge-conflicts": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/engineering/resolving-merge-conflicts/SKILL.md",
-      "skillFolderHash": "6aa1ed0b40fac0ebea5c0cf6f2addf82c99b6323",
-      "pluginName": "mattpocock-skills",
-      "installedAt": "2026-07-01T04:58:33.772Z",
-      "updatedAt": "2026-09-14T08:17:03.899Z"
-    },
-    "scaffold-exercises": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/misc/scaffold-exercises/SKILL.md",
-      "skillFolderHash": "44a0ee332b9d67ebbd59389c7eb4e5aff1ce845c",
-      "installedAt": "2026-07-01T04:58:33.774Z",
-      "updatedAt": "2026-10-06T07:35:46.221Z"
-    },
-    "setup-pre-commit": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/misc/setup-pre-commit/SKILL.md",
-      "skillFolderHash": "5b63f9f665bacc9be04cae51982e9ef1469d6699",
-      "installedAt": "2026-07-01T04:58:33.775Z",
-      "updatedAt": "2026-10-06T07:35:46.222Z"
-    },
-    "wizard": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/engineering/wizard/SKILL.md",
-      "skillFolderHash": "0a163daf092c6f361158ca9627e81f2cb5230574",
-      "pluginName": "mattpocock-skills",
-      "installedAt": "2026-07-01T04:58:33.779Z",
-      "updatedAt": "2026-10-06T07:35:46.207Z"
-    },
-    "writing-beats": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/in-progress/writing-beats/SKILL.md",
-      "skillFolderHash": "3a28fb076fdaaec0927080718abb98fc0f340011",
-      "installedAt": "2026-07-01T04:58:33.781Z",
-      "updatedAt": "2026-10-06T07:35:46.224Z"
-    },
-    "writing-fragments": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/in-progress/writing-fragments/SKILL.md",
-      "skillFolderHash": "98e500e0097ec80f52f6a024c5a2ff6d15235bdb",
-      "installedAt": "2026-07-01T04:58:33.782Z",
-      "updatedAt": "2026-10-06T07:35:46.226Z"
-    },
-    "writing-shape": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/in-progress/writing-shape/SKILL.md",
-      "skillFolderHash": "ac92229646fccf7315ae139c37b479b3790617f2",
-      "installedAt": "2026-07-01T04:58:33.783Z",
-      "updatedAt": "2026-10-06T07:35:46.228Z"
-    },
-    "code-review": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/engineering/code-review/SKILL.md",
-      "skillFolderHash": "d8e341cee7980127dddda05159bedf25dc853615",
-      "pluginName": "mattpocock-skills",
-      "installedAt": "2026-07-12T10:37:45.187Z",
-      "updatedAt": "2026-10-06T07:35:46.156Z"
-    },
-    "research": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/engineering/research/SKILL.md",
-      "skillFolderHash": "0a6796c5667e95ed2301ba7381c123b4acb2ae1a",
-      "pluginName": "mattpocock-skills",
-      "installedAt": "2026-07-12T10:37:45.199Z",
-      "updatedAt": "2026-10-06T07:35:46.174Z"
-    },
-    "to-spec": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/engineering/to-spec/SKILL.md",
-      "skillFolderHash": "136b9651747cfccbfbb7c50a6b0dfb757e7547d2",
-      "pluginName": "mattpocock-skills",
-      "installedAt": "2026-07-12T10:37:45.203Z",
-      "updatedAt": "2026-10-06T07:35:46.198Z"
-    },
-    "to-tickets": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/engineering/to-tickets/SKILL.md",
-      "skillFolderHash": "b32c94e5a51c24ee9c41fcb7fe9ea9fff9af6369",
-      "pluginName": "mattpocock-skills",
-      "installedAt": "2026-07-12T10:37:45.203Z",
-      "updatedAt": "2026-10-06T07:35:46.200Z"
-    },
-    "wayfinder": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/engineering/wayfinder/SKILL.md",
-      "skillFolderHash": "8ec0462658381bd1606d3f9db14ffc67df6a2a43",
-      "pluginName": "mattpocock-skills",
-      "installedAt": "2026-07-12T10:37:45.205Z",
-      "updatedAt": "2026-10-06T07:35:46.206Z"
-    },
-    "claude-handoff": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/in-progress/claude-handoff/SKILL.md",
-      "skillFolderHash": "6845c30e62e1c0c2c0fbdea8307379197f0b4dc4",
-      "installedAt": "2026-07-12T10:37:45.207Z",
-      "updatedAt": "2026-10-06T07:35:46.214Z"
-    },
-    "setup-ts-deep-modules": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/in-progress/setup-ts-deep-modules/SKILL.md",
-      "skillFolderHash": "b32508a8a7d62c07d32d7c5cff84d357719def7f",
-      "installedAt": "2026-07-12T10:37:45.217Z",
-      "updatedAt": "2026-10-06T07:35:46.223Z"
-    },
-    "to-questionnaire": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/productivity/to-questionnaire/SKILL.md",
-      "skillFolderHash": "46dfbeeba12a9e52eef446676f42e7551023d9a9",
-      "pluginName": "mattpocock-skills",
-      "installedAt": "2026-07-21T14:50:25.022Z",
-      "updatedAt": "2026-10-06T07:35:46.196Z"
-    },
-    "wait-what": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/productivity/wait-what/SKILL.md",
-      "skillFolderHash": "c8b050e6b8c711be1a9008ceacb2126914f0763e",
-      "pluginName": "mattpocock-skills",
-      "installedAt": "2026-07-01T04:58:33.728Z",
-      "updatedAt": "2026-10-06T07:35:46.205Z"
-    },
-    "writing-for-agents": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/productivity/writing-for-agents/SKILL.md",
-      "skillFolderHash": "ad2925850efb8973a72d2e666f7a975f9a2d4a9b",
-      "pluginName": "mattpocock-skills",
-      "installedAt": "2026-07-01T04:58:33.728Z",
-      "updatedAt": "2026-10-06T07:35:46.211Z"
-    },
-    "skill-creator": {
-      "source": "anthropics/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/anthropics/skills.git",
-      "skillPath": "skills/skill-creator/SKILL.md",
-      "skillFolderHash": "3cf9a8db32597ba3e24b584a3d696f4e11c7d7b6",
-      "pluginName": "example-skills",
-      "installedAt": "2026-09-29T01:25:05.294Z",
-      "updatedAt": "2026-09-29T01:25:05.294Z"
-    },
-    "api-and-interface-design": {
-      "source": "addyosmani/agent-skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/addyosmani/agent-skills.git",
-      "skillPath": "skills/api-and-interface-design/SKILL.md",
-      "skillFolderHash": "f7eefe1133c8540d00f279a171053cc9551ec5c4",
-      "installedAt": "2026-09-30T12:03:39.987Z",
-      "updatedAt": "2026-09-30T12:03:39.987Z"
-    },
-    "browser-testing-with-devtools": {
-      "source": "addyosmani/agent-skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/addyosmani/agent-skills.git",
-      "skillPath": "skills/browser-testing-with-devtools/SKILL.md",
-      "skillFolderHash": "42be59520831f02c46bce7bed1aac6ab0592947c",
-      "installedAt": "2026-09-30T12:03:39.990Z",
-      "updatedAt": "2026-09-30T12:03:39.990Z"
-    },
-    "ci-cd-and-automation": {
-      "source": "addyosmani/agent-skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/addyosmani/agent-skills.git",
-      "skillPath": "skills/ci-cd-and-automation/SKILL.md",
-      "skillFolderHash": "34db321777a17e268ac425f0f7f2501dda55c955",
-      "installedAt": "2026-09-30T12:03:39.993Z",
-      "updatedAt": "2026-09-30T12:03:39.993Z"
-    },
-    "code-review-and-quality": {
-      "source": "addyosmani/agent-skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/addyosmani/agent-skills.git",
-      "skillPath": "skills/code-review-and-quality/SKILL.md",
-      "skillFolderHash": "57d9d2d1112ed2e972c08c0f6de097badde32498",
-      "installedAt": "2026-09-30T12:03:39.995Z",
-      "updatedAt": "2026-09-30T12:03:39.995Z"
-    },
-    "code-simplification": {
-      "source": "addyosmani/agent-skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/addyosmani/agent-skills.git",
-      "skillPath": "skills/code-simplification/SKILL.md",
-      "skillFolderHash": "15b6e21924188ee46402a8c91963162fd9056c7d",
-      "installedAt": "2026-09-30T12:03:39.997Z",
-      "updatedAt": "2026-09-30T12:03:39.997Z"
-    },
-    "constraint-driven-development": {
-      "source": "addyosmani/agent-skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/addyosmani/agent-skills.git",
-      "skillPath": "skills/constraint-driven-development/SKILL.md",
-      "skillFolderHash": "7c78733a477f8ff309fd505f0555b33fc9e2edcd",
-      "installedAt": "2026-09-30T12:03:39.999Z",
-      "updatedAt": "2026-09-30T12:03:39.999Z"
-    },
-    "context-engineering": {
-      "source": "addyosmani/agent-skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/addyosmani/agent-skills.git",
-      "skillPath": "skills/context-engineering/SKILL.md",
-      "skillFolderHash": "5da63415256218e76f85e7e371bb21ceef4293e1",
-      "installedAt": "2026-09-30T12:03:40.001Z",
-      "updatedAt": "2026-09-30T12:03:40.001Z"
-    },
-    "debugging-and-error-recovery": {
-      "source": "addyosmani/agent-skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/addyosmani/agent-skills.git",
-      "skillPath": "skills/debugging-and-error-recovery/SKILL.md",
-      "skillFolderHash": "c3b5c340bae3ac952733213b40035820acfb48a3",
-      "installedAt": "2026-09-30T12:03:40.002Z",
-      "updatedAt": "2026-09-30T12:03:40.002Z"
-    },
-    "deprecation-and-migration": {
-      "source": "addyosmani/agent-skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/addyosmani/agent-skills.git",
-      "skillPath": "skills/deprecation-and-migration/SKILL.md",
-      "skillFolderHash": "452a130309afc52a26beceb21f1467936e53a37c",
-      "installedAt": "2026-09-30T12:03:40.004Z",
-      "updatedAt": "2026-09-30T12:03:40.004Z"
-    },
-    "documentation-and-adrs": {
-      "source": "addyosmani/agent-skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/addyosmani/agent-skills.git",
-      "skillPath": "skills/documentation-and-adrs/SKILL.md",
-      "skillFolderHash": "eeff83d93dd39454d0b9d193ba3ea5c85f681530",
-      "installedAt": "2026-09-30T12:03:40.007Z",
-      "updatedAt": "2026-09-30T12:03:40.007Z"
-    },
-    "doubt-driven-development": {
-      "source": "addyosmani/agent-skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/addyosmani/agent-skills.git",
-      "skillPath": "skills/doubt-driven-development/SKILL.md",
-      "skillFolderHash": "2a25398c4f73f715c1fe5110ca789fdb7de30983",
-      "installedAt": "2026-09-30T12:03:40.008Z",
-      "updatedAt": "2026-09-30T12:03:40.008Z"
-    },
-    "frontend-ui-engineering": {
-      "source": "addyosmani/agent-skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/addyosmani/agent-skills.git",
-      "skillPath": "skills/frontend-ui-engineering/SKILL.md",
-      "skillFolderHash": "8fdd24f2b93c198e4973f4008d694929a6082406",
-      "installedAt": "2026-09-30T12:03:40.010Z",
-      "updatedAt": "2026-09-30T12:03:40.010Z"
-    },
-    "git-workflow-and-versioning": {
-      "source": "addyosmani/agent-skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/addyosmani/agent-skills.git",
-      "skillPath": "skills/git-workflow-and-versioning/SKILL.md",
-      "skillFolderHash": "92d87ae1fe98e6b67403bace2ef01264f9664468",
-      "installedAt": "2026-09-30T12:03:40.012Z",
-      "updatedAt": "2026-09-30T12:03:40.012Z"
-    },
-    "idea-refine": {
-      "source": "addyosmani/agent-skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/addyosmani/agent-skills.git",
-      "skillPath": "skills/idea-refine/SKILL.md",
-      "skillFolderHash": "14f474d8f51370ddd9127ff3d171810a1acf891a",
-      "installedAt": "2026-09-30T12:03:40.014Z",
-      "updatedAt": "2026-09-30T12:03:40.014Z"
-    },
-    "incremental-implementation": {
-      "source": "addyosmani/agent-skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/addyosmani/agent-skills.git",
-      "skillPath": "skills/incremental-implementation/SKILL.md",
-      "skillFolderHash": "a3e2fab3e3b97e078e2404a505c4b2fa5e123c9b",
-      "installedAt": "2026-09-30T12:03:40.015Z",
-      "updatedAt": "2026-09-30T12:03:40.015Z"
-    },
-    "interview-me": {
-      "source": "addyosmani/agent-skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/addyosmani/agent-skills.git",
-      "skillPath": "skills/interview-me/SKILL.md",
-      "skillFolderHash": "2a391376521dee060881b7edc676e58a564616f2",
-      "installedAt": "2026-09-30T12:03:40.017Z",
-      "updatedAt": "2026-09-30T12:03:40.017Z"
-    },
-    "observability-and-instrumentation": {
-      "source": "addyosmani/agent-skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/addyosmani/agent-skills.git",
-      "skillPath": "skills/observability-and-instrumentation/SKILL.md",
-      "skillFolderHash": "1e8f1c0144e2b8f7859f5870329a31f8abc58193",
-      "installedAt": "2026-09-30T12:03:40.019Z",
-      "updatedAt": "2026-09-30T12:03:40.019Z"
-    },
-    "performance-optimization": {
-      "source": "addyosmani/agent-skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/addyosmani/agent-skills.git",
-      "skillPath": "skills/performance-optimization/SKILL.md",
-      "skillFolderHash": "d7cc0bec423819ebe153ec70177caaec4bad3fea",
-      "installedAt": "2026-09-30T12:03:40.021Z",
-      "updatedAt": "2026-09-30T12:03:40.021Z"
-    },
-    "planning-and-task-breakdown": {
-      "source": "addyosmani/agent-skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/addyosmani/agent-skills.git",
-      "skillPath": "skills/planning-and-task-breakdown/SKILL.md",
-      "skillFolderHash": "3045f95a156dc71d7b5ac1e29ce795bb5cac2b71",
-      "installedAt": "2026-09-30T12:03:40.023Z",
-      "updatedAt": "2026-09-30T12:03:40.023Z"
-    },
-    "security-and-hardening": {
-      "source": "addyosmani/agent-skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/addyosmani/agent-skills.git",
-      "skillPath": "skills/security-and-hardening/SKILL.md",
-      "skillFolderHash": "79b5adb3e84ab5934e3d4b893f9de8fc7b11ffdb",
-      "installedAt": "2026-09-30T12:03:40.024Z",
-      "updatedAt": "2026-09-30T12:03:40.024Z"
-    },
-    "shipping-and-launch": {
-      "source": "addyosmani/agent-skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/addyosmani/agent-skills.git",
-      "skillPath": "skills/shipping-and-launch/SKILL.md",
-      "skillFolderHash": "48677fb7727e6cdb9be1713ace4837aaaa37aed9",
-      "installedAt": "2026-09-30T12:03:40.026Z",
-      "updatedAt": "2026-09-30T12:03:40.026Z"
-    },
-    "source-driven-development": {
-      "source": "addyosmani/agent-skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/addyosmani/agent-skills.git",
-      "skillPath": "skills/source-driven-development/SKILL.md",
-      "skillFolderHash": "29e1dcc180d54898aa7c5f4c466864c59ac2ee41",
-      "installedAt": "2026-09-30T12:03:40.027Z",
-      "updatedAt": "2026-09-30T12:03:40.027Z"
-    },
-    "spec-driven-development": {
-      "source": "addyosmani/agent-skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/addyosmani/agent-skills.git",
-      "skillPath": "skills/spec-driven-development/SKILL.md",
-      "skillFolderHash": "3c412780068d7faf9f504a9fac10b8137fcd5faa",
-      "installedAt": "2026-09-30T12:03:40.029Z",
-      "updatedAt": "2026-09-30T12:03:40.029Z"
-    },
-    "test-driven-development": {
-      "source": "addyosmani/agent-skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/addyosmani/agent-skills.git",
-      "skillPath": "skills/test-driven-development/SKILL.md",
-      "skillFolderHash": "b812b07dc0c5084dbffe58a1cc856de2fdd99116",
-      "installedAt": "2026-09-30T12:03:40.030Z",
-      "updatedAt": "2026-09-30T12:03:40.030Z"
-    },
-    "using-agent-skills": {
-      "source": "addyosmani/agent-skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/addyosmani/agent-skills.git",
-      "skillPath": "skills/using-agent-skills/SKILL.md",
-      "skillFolderHash": "81e8196f4dd4bf9fc5f0a1b827f4148af52a4391",
-      "installedAt": "2026-09-30T12:03:40.032Z",
-      "updatedAt": "2026-09-30T12:03:40.032Z"
-    },
-    "implement-spec": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/engineering/implement-spec/SKILL.md",
-      "skillFolderHash": "0cfefc751d0cb64f0c948ffcb17e13b94e778f08",
-      "pluginName": "mattpocock-skills",
-      "installedAt": "2026-10-06T07:35:46.169Z",
-      "updatedAt": "2026-10-06T07:35:46.169Z"
-    },
-    "pr": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/engineering/pr/SKILL.md",
-      "skillFolderHash": "00b896d811adffad747c7ca30078d909d60c7f93",
-      "pluginName": "mattpocock-skills",
-      "installedAt": "2026-10-06T07:35:46.171Z",
-      "updatedAt": "2026-10-06T07:35:46.171Z"
-    },
-    "retro": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/engineering/retro/SKILL.md",
-      "skillFolderHash": "335c1862a43da9d629abafdb79ca0c0de118be08",
-      "pluginName": "mattpocock-skills",
-      "installedAt": "2026-10-06T07:35:46.175Z",
-      "updatedAt": "2026-10-06T07:35:46.175Z"
-    },
-    "chief-of-staff": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/in-progress/chief-of-staff/SKILL.md",
-      "skillFolderHash": "4086bbb5127e616878fad9a9fe1db9e78b04c28c",
-      "installedAt": "2026-10-06T07:35:46.213Z",
-      "updatedAt": "2026-10-06T07:35:46.213Z"
-    },
-    "diagram-design": {
-      "source": "cathrynlavery/diagram-design",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/cathrynlavery/diagram-design.git",
-      "skillPath": "skills/diagram-design/SKILL.md",
-      "skillFolderHash": "bcecaf90a9082b1820d32c9416665bec0d9d713e",
-      "installedAt": "2026-10-31T08:22:32.016Z",
-      "updatedAt": "2026-10-31T08:22:32.016Z"
-    },
-    "modern-web-guidance": {
-      "source": "GoogleChrome/modern-web-guidance",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/GoogleChrome/modern-web-guidance.git",
-      "skillPath": "skills/modern-web-guidance/SKILL.md",
-      "skillFolderHash": "6e3321c4005ad2b2ef6a59156f015c9237173fc1",
-      "installedAt": "2026-11-04T02:38:16.238Z",
-      "updatedAt": "2026-11-04T02:38:16.238Z"
+    "github.com/anthropics/skills": {
+      "url": "https://github.com/anthropics/skills.git",
+      "frozen": true
     }
   },
-  "lastSelectedAgents": [
-    "amp",
-    "cline",
-    "codex",
-    "cursor",
-    "droid",
-    "fx",
-    "gemini-cli",
-    "github-copilot",
-    "kilo",
-    "kimi-code-cli",
-    "opencode",
-    "pi",
-    "warp",
-    "zed",
-    "claude-code",
-    "hermes-agent",
-    "zcode",
-    "minimax-code"
-  ],
-  "dismissed": {
-    "findSkillsPrompt": true
+  "skills": {
+    "api-and-interface-design": {
+      "zone": "vendor",
+      "source": "github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "4055ebad1144d4e8cdf8ac300ff6782cf20ba5ba"
+    },
+    "archify": {
+      "zone": "vendor",
+      "source": "github.com/tt-a1i/archify",
+      "commit": "a4065941f12be7967436261d9934784e381d423c",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "89b012833cb85832f43626e074b44486a3a55091"
+    },
+    "archify-review": {
+      "zone": "vendor",
+      "source": "github.com/tt-a1i/archify",
+      "commit": "a4065941f12be7967436261d9934784e381d423c",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "b8e70f14ef185a3ca95f0b4f59265bd32d08f6f1"
+    },
+    "archify-tuning": {
+      "zone": "vendor",
+      "source": "github.com/tt-a1i/archify",
+      "commit": "a4065941f12be7967436261d9934784e381d423c",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "e1c58162b69cff45c721ce06c6f8465ce117ea82"
+    },
+    "ask-matt": {
+      "zone": "vendor",
+      "source": "github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "f304ab393d6df671020dd3b655017f636613f3ee"
+    },
+    "browser-testing-with-devtools": {
+      "zone": "vendor",
+      "source": "github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "b64d5d66ae20165e69de2bc5c394c7b49819863d"
+    },
+    "chief-of-staff": {
+      "zone": "vendor",
+      "source": "github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "3586d224111960f5b3c0bce2f2b6b8b61f8f37e5"
+    },
+    "ci-cd-and-automation": {
+      "zone": "vendor",
+      "source": "github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "e56295b736e8153c6e9cc2120f3b542678e30fb5"
+    },
+    "claude-handoff": {
+      "zone": "vendor",
+      "source": "github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "37b996811a6aa7b210c8caadd8a6e814f753c6e8"
+    },
+    "code-review": {
+      "zone": "vendor",
+      "source": "github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "1bbb27ca68aae125cdd6829e1f78adfe62b92f2b"
+    },
+    "code-review-and-quality": {
+      "zone": "vendor",
+      "source": "github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "78fdfe00d76a11c5f24d407e8fc49a1c21eb5239"
+    },
+    "code-simplification": {
+      "zone": "vendor",
+      "source": "github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "c2876ea96af86952ef26952efa5028da7aa53999"
+    },
+    "codebase-design": {
+      "zone": "vendor",
+      "source": "github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "5d532657eb34732d8287e5c6cefda5cb9992b4f1"
+    },
+    "constraint-driven-development": {
+      "zone": "vendor",
+      "source": "github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "ae3844b7730c7387b4a9d21a1607e971f35258de"
+    },
+    "context-engineering": {
+      "zone": "vendor",
+      "source": "github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "a1ab531e072f5315d6f37a1a943f0f02967ac95f"
+    },
+    "debugging-and-error-recovery": {
+      "zone": "vendor",
+      "source": "github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "71a6037078e86162af01aec6ccf1ad76f95c4c68"
+    },
+    "deprecation-and-migration": {
+      "zone": "vendor",
+      "source": "github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "67ef5bf05897a3549debe80c945274901ca2e9dc"
+    },
+    "diagnosing-bugs": {
+      "zone": "vendor",
+      "source": "github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "945f3f1a6599b19657cf1e65272166d72d5afaed"
+    },
+    "diagram-design": {
+      "zone": "vendor",
+      "source": "github.com/cathrynlavery/diagram-design",
+      "commit": "e57eda6102a19444538ebd611d39534fad65b663",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "346894c7daac1e92cebc15e855ac3e32bbd04d76"
+    },
+    "documentation-and-adrs": {
+      "zone": "vendor",
+      "source": "github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "53b81d8b2c855b99205b72ac7d331e8b5e9798ef"
+    },
+    "domain-modeling": {
+      "zone": "vendor",
+      "source": "github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "0a3354f666cf9c6798efe3e6c52fc2befc4bbcbb"
+    },
+    "doubt-driven-development": {
+      "zone": "vendor",
+      "source": "github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "d55af800bdf35dfc602884553a7118190baf22c4"
+    },
+    "egm-bootstrap": {
+      "zone": "vendor",
+      "source": "github.com/google/elephant-goldfish-model",
+      "commit": "7bd119c1031c58e6a6f4e2031b397a2635872124",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "748f02755f8d26abe709237249e452746278db77"
+    },
+    "egm-brainstorm": {
+      "zone": "vendor",
+      "source": "github.com/google/elephant-goldfish-model",
+      "commit": "7bd119c1031c58e6a6f4e2031b397a2635872124",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "ca5e33fd428cba63058bb598f524a1007d5fab1e"
+    },
+    "egm-draft": {
+      "zone": "vendor",
+      "source": "github.com/google/elephant-goldfish-model",
+      "commit": "7bd119c1031c58e6a6f4e2031b397a2635872124",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "940bda6dc0ac5df5dff857a1581f259c2bd5dfd1"
+    },
+    "egm-drift-report": {
+      "zone": "vendor",
+      "source": "github.com/google/elephant-goldfish-model",
+      "commit": "7bd119c1031c58e6a6f4e2031b397a2635872124",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "706b0db291305ede1c37b1d8aeb2599a7e078522"
+    },
+    "egm-resolve": {
+      "zone": "vendor",
+      "source": "github.com/google/elephant-goldfish-model",
+      "commit": "7bd119c1031c58e6a6f4e2031b397a2635872124",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "33b20b1445acdbaf8863adfb9209256ea690352b"
+    },
+    "egm-review": {
+      "zone": "vendor",
+      "source": "github.com/google/elephant-goldfish-model",
+      "commit": "7bd119c1031c58e6a6f4e2031b397a2635872124",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "13e93baaddfb89bae43a6f8e05d8da6e3e7d3618"
+    },
+    "egm-review-loop": {
+      "zone": "vendor",
+      "source": "github.com/google/elephant-goldfish-model",
+      "commit": "7bd119c1031c58e6a6f4e2031b397a2635872124",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "64b4826aa62ef46a8b623fd94e418b3321b71f64"
+    },
+    "frontend-ui-engineering": {
+      "zone": "vendor",
+      "source": "github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "5ae89706a7ebad6e420a4a20d1e984eff87c3c25"
+    },
+    "git-guardrails-claude-code": {
+      "zone": "vendor",
+      "source": "github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "4cda19f1611c5fadeec66e30f804681566052cf9"
+    },
+    "git-workflow-and-versioning": {
+      "zone": "vendor",
+      "source": "github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "c2691c21c83b9ef2fdf1c3396e2bb5d6c8c825f8"
+    },
+    "grill-me": {
+      "zone": "vendor",
+      "source": "github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "fbf7f73886a10732cb24c169feee55f0bcda950f"
+    },
+    "grill-with-docs": {
+      "zone": "vendor",
+      "source": "github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "d7c5ca8c628ac16891b60518eaf551e4d6fa8bb2"
+    },
+    "grilling": {
+      "zone": "vendor",
+      "source": "github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "5b35bbf8ddb5c46aa4bec68de8ef485501793a1c"
+    },
+    "handoff": {
+      "zone": "vendor",
+      "source": "github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "7ff18ece50292b6b18f8ff5bd34a7b7450b2e66a"
+    },
+    "idea-refine": {
+      "zone": "vendor",
+      "source": "github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "5ac4812722d2659e347d0a77871a4e871648645f"
+    },
+    "implement": {
+      "zone": "vendor",
+      "source": "github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "ac634521c4afed88598fad8de158566a00d68262"
+    },
+    "implement-spec": {
+      "zone": "vendor",
+      "source": "github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "6fd1e45784e71e235857363210728829f7866a46"
+    },
+    "improve-codebase-architecture": {
+      "zone": "vendor",
+      "source": "github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "eb70c8e46b3f9012d715d62cbf3c151350de4ac0"
+    },
+    "incremental-implementation": {
+      "zone": "vendor",
+      "source": "github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "2aecedf396456781a51a330ddb4707780bd1cbbd"
+    },
+    "interview-me": {
+      "zone": "vendor",
+      "source": "github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "5808a6c117d79e6ab4e955df44e5aa79f8ea3664"
+    },
+    "launch-video": {
+      "zone": "vendor",
+      "source": "github.com/modem-dev/sideshow",
+      "commit": "a3b18af5a77f40889ec1f06359a277ccc61310ff",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "2d8425a812929516e423f20176063be159850773"
+    },
+    "loop-me": {
+      "zone": "vendor",
+      "source": "github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "8c85c3f164b38c8ed648a2a573a403d6998f4519"
+    },
+    "migrate-to-shoehorn": {
+      "zone": "vendor",
+      "source": "github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "a2acdb74a3e86c32563f8774095289e02e619386"
+    },
+    "observability-and-instrumentation": {
+      "zone": "vendor",
+      "source": "github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "b3c328b5c7f28f20cd87801f75abde71dd88d28b"
+    },
+    "performance-optimization": {
+      "zone": "vendor",
+      "source": "github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "9cba9e107fe6324f5e48216ec68bb1eca37a4b5c"
+    },
+    "planning-and-task-breakdown": {
+      "zone": "vendor",
+      "source": "github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "4ab48245bbcdf691272564e7259dfc90e97c2a8c"
+    },
+    "pr": {
+      "zone": "vendor",
+      "source": "github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "979e561ab17bd81c1096877b6db2f9c7efeba648"
+    },
+    "prototype": {
+      "zone": "vendor",
+      "source": "github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "2b95c929bea187134bf0fb5d748440b634bcf558"
+    },
+    "research": {
+      "zone": "vendor",
+      "source": "github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "230a244b76584c374cb1ff205b9a365477d01f61"
+    },
+    "retro": {
+      "zone": "vendor",
+      "source": "github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "d55d9aaff66b09e73b7b4a97243e46d1f09c64da"
+    },
+    "scaffold-exercises": {
+      "zone": "vendor",
+      "source": "github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "db0be379df63383a2ebfc82ffc50a65246ff8647"
+    },
+    "security-and-hardening": {
+      "zone": "vendor",
+      "source": "github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "da66fa72ef7d446ecd2c900b316f4059dfa506e1"
+    },
+    "setup-matt-pocock-skills": {
+      "zone": "vendor",
+      "source": "github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "8de8eb0c5f8df37adf5cf7b3973f7159bbbfa4fe"
+    },
+    "setup-pre-commit": {
+      "zone": "vendor",
+      "source": "github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "fa5170936e1a99c3d0bf340c5cb7ee8708affd8c"
+    },
+    "setup-ts-deep-modules": {
+      "zone": "vendor",
+      "source": "github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "3ba396761d06514ecd28fc75af848b221c7e4472"
+    },
+    "shipping-and-launch": {
+      "zone": "vendor",
+      "source": "github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "119f86a79115b2e0211c53a7310832d0c8c7d184"
+    },
+    "sideshow": {
+      "zone": "vendor",
+      "source": "github.com/modem-dev/sideshow",
+      "commit": "a3b18af5a77f40889ec1f06359a277ccc61310ff",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "de7dd51c2b229cc04b2fefd4b7181a99b7cc9025"
+    },
+    "software-factory": {
+      "zone": "vendor",
+      "source": "github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "408d323c2f56077c28b39ae5637657b27241786e"
+    },
+    "source-driven-development": {
+      "zone": "vendor",
+      "source": "github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "ee831a70566e1d1f1be0069905e294358b59c8ad"
+    },
+    "spec-driven-development": {
+      "zone": "vendor",
+      "source": "github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "d3293d48e9cf0b3249aa316963a7a71b6b9346ee"
+    },
+    "tdd": {
+      "zone": "vendor",
+      "source": "github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "52077750f176aa99cca1aad03942f85773ef5615"
+    },
+    "teach": {
+      "zone": "vendor",
+      "source": "github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "d9caabe98f03ab082673f85b828ccb0b11efcceb"
+    },
+    "test-driven-development": {
+      "zone": "vendor",
+      "source": "github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "1cf5de616bfe774b5e9696724186dbfac4e9b06b"
+    },
+    "to-questionnaire": {
+      "zone": "vendor",
+      "source": "github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "a987bfe66fcb00c794393a5ac27eb0d586c285aa"
+    },
+    "to-spec": {
+      "zone": "vendor",
+      "source": "github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "c80e2b556c7c1a5538fd4ecf1ac454b9ca2059fa"
+    },
+    "to-tickets": {
+      "zone": "vendor",
+      "source": "github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "7e43ad6be78293c18ea59d95e858ef2e18bf074e"
+    },
+    "triage": {
+      "zone": "vendor",
+      "source": "github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "5a87579f9f7097810330a5c8ea95f7a23c097e73"
+    },
+    "using-agent-skills": {
+      "zone": "vendor",
+      "source": "github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "81563f2d273b2a2a14ff57a502f77246cd425f34"
+    },
+    "wait-what": {
+      "zone": "vendor",
+      "source": "github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "00dc1e235c575c8c15428acfc75627c8e074516d"
+    },
+    "wayfinder": {
+      "zone": "vendor",
+      "source": "github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "c7ca9ce50b69b0bc0a63288edc0ff13f41d7a109"
+    },
+    "wizard": {
+      "zone": "vendor",
+      "source": "github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "5a3a18950364bf87f189a5859c968c3d5b71eae3"
+    },
+    "writing-beats": {
+      "zone": "vendor",
+      "source": "github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "218a0b7ce81ff22d90d2dea07db9d997e73cf146"
+    },
+    "writing-for-agents": {
+      "zone": "vendor",
+      "source": "github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "950c641c1933daaf3cfe3a5a75e3c44974253ec1"
+    },
+    "writing-fragments": {
+      "zone": "vendor",
+      "source": "github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "44c8b26dec1cac2d03017b62f4588bcd490bb4fb"
+    },
+    "writing-shape": {
+      "zone": "vendor",
+      "source": "github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "pulledAt": "2026-11-07T01:36:21Z",
+      "deployedHash": "49319962a8170fed6ededd2b9de78b69ccd1c7c0"
+    }
+  },
+  "inHouse": {
+    "architecture-diagram": {
+      "deployedHash": "749d5bc6a5b00acef4dff57107cf1c0586f5e172"
+    },
+    "code-to-spec": {
+      "deployedHash": "e8f8021bb753bce946d9a11db7c4335a2b77ff46"
+    },
+    "code-walk": {
+      "deployedHash": "0dbb2bcc1913e1e14565f475f2d007b38cdf5bdf"
+    },
+    "insight-diagram": {
+      "deployedHash": "1dd64b3f4bd93c77b198194a1517b7b40c75cd0f"
+    }
   }
 }
