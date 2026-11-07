@@ -267,11 +267,24 @@ restore_from_plan() { # $1 = plan file ("zone<TAB>srcdir<TAB>name"); guard -> ma
   fi
   if [ "$guard_drifts" -gt 0 ]; then warn "--force: overwriting $guard_drifts drifted dir(s) (logged)"; fi
   mkdir -p "$NODE_SKILLS"               # fresh machine: parent chain may not exist (rsync 2.6.9 won't create it)
-  local hashbatch
+  local hashbatch vendorlist
   hashbatch="$(mktemp "${TMPDIR:-/tmp}/lock.newhash.XXXXXX")"
+  vendorlist="$(mktemp "${TMPDIR:-/tmp}/restore.vendor.XXXXXX")"
   local count=0 sec
   while IFS=$'\t' read -r zone src name; do
     rsync -a --delete "$src/" "$NODE_SKILLS/$name/"
+    if [ "$zone" = vendor ]; then printf '%s\n' "$NODE_SKILLS/$name" >> "$vendorlist"; fi
+    count=$((count + 1))
+    if [ "$zone" = inhouse ]; then log "  materialized (in-house): $name"; else log "  materialized: $name"; fi
+  done < "$plan"
+  # Deploy-boundary normalization (vendor zone only): upstream skills don't owe
+  # us our conventions — the mirror stays byte-faithful, and materialization
+  # repairs the known strict-YAML breakage class so strict parsers (dsh) see
+  # working skills. In-house zone is ours: no normalization, doctor errors.
+  if [ -s "$vendorlist" ]; then
+    ruby "$REPO_ROOT/hack/lib-normalize.rb" $(tr '\n' ' ' < "$vendorlist") 2>&1 | grep -E 'normalized|failed' || true
+  fi
+  while IFS=$'\t' read -r zone src name; do
     if [ "$zone" = inhouse ]; then
       sec=inHouse
     elif grep -qxF "$name" "$locknames"; then
@@ -282,9 +295,8 @@ restore_from_plan() { # $1 = plan file ("zone<TAB>srcdir<TAB>name"); guard -> ma
     if [ "$sec" != skip ]; then
       printf '%s\t%s\t%s\n' "$sec" "$name" "$(hash_dir "$NODE_SKILLS/$name")" >> "$hashbatch"
     fi
-    count=$((count + 1))
-    if [ "$zone" = inhouse ]; then log "  materialized (in-house): $name"; else log "  materialized: $name"; fi
   done < "$plan"
+  rm -f "$vendorlist"
   lock_apply_hashes "$hashbatch"
   rm -f "$baselines" "$locknames" "$hashbatch"
   log "restored $count skills -> $NODE_SKILLS"

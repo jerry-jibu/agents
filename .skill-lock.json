@@ -459,7 +459,7 @@
       "source": "github.com/mattpocock/skills",
       "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "eda74783eca8cd92ec2cf296d1661e18649499c0"
+      "deployedHash": "125c289dbf7c721b83760a1227cd23cf38d3f5cc"
     },
     "source-driven-development": {
       "zone": "vendor",

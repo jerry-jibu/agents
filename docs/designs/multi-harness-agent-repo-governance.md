@@ -153,7 +153,7 @@ in-house/skills/<name>/ ──（repo 内编辑即 git 变更）──▶ [git r
 
 *   **pull**：上游 → `vendor/github.com/<owner>/<repo>/**` + lock v4（commit 锚更新）。镜像粒度钉死 **per-skill**（只 rsync 上游现存的各 skill 目录）——上游已删的遗留条目天然保留，不会被整源 `--delete` 清除。单源 clone 失败全中止；lock 写入 temp+rename 原子；中断重跑幂等收敛（单源 pull 二次执行无 diff）；**pull 写 repo 后自动对本节点执行 restore**（delta guard 在此触发）。永不触碰 `in-house/` 与 `vendor/unknown/`。
 *   **collect**（node → repo）：只收 node 起源的生成管线产物——`mcps/` 与 `harness/*/config/` 备份（凭据策略见 Risks）；`agents/`（personas 生成结果）的收集由 `sync-agents.sh collect` 承担（职责切分，见实施计划条目 7b/15）。**skills 零收集**；in-house 的 node 侧漂移由 doctor C4 报告，收割走显式 `adopt`（diff 呈现 → 确认后 git-native 落盘）。
-*   **restore**（repo → node）：`vendor/github.com/<owner>/<repo>/<name>/` 与 `in-house/skills/<name>/` 统一物化到 `~/.agents/skills/<install-name>/`（扁平）；harness 专属物化到各自已验证路径。
+*   **restore**（repo → node）：`vendor/github.com/<owner>/<repo>/<name>/` 与 `in-house/skills/<name>/` 统一物化到 `~/.agents/skills/<install-name>/`（扁平）；harness 专属物化到各自已验证路径。**vendor 区物化时经 `lib-normalize.rb` 做 deploy 边界归一**（2026-11-07 治理精化：上游不守我们规矩的容差层——镜像保持字节忠实，仅 node 副本修复已知 strict-YAML 断裂类；in-house 不归一，源即须合规）。
 
 **node 侧 delta guard（硬中止 + 清单指路，以部署基线为参照）**：每次物化成功后，lock v4 对应条目记录 `deployedHash`（node 目录内容哈希）作为部署基线。guard = **node 当前内容 vs 部署基线**（而非 node vs repo 当前）：基线一致 → node 无独立改动，允许覆盖（repo 合法前进，如 CUJ 3 日常流）；基线不一致 → node 存在独立改动（漂移），立即中止本次物化，输出漂移清单 + diff 摘要 + 两条出路命令（`adopt <name>` 收割进 git / 确认丢弃后重跑）；无基线记录的新目录/新机 → node 已有内容即视为漂移；`--force` 显式越过并记日志。
 
@@ -197,7 +197,7 @@ in-house/skills/<name>/ ──（repo 内编辑即 git 变更）──▶ [git r
 
 | ID | 检查 | Severity | 自动修复 |
 |---|---|---|---|
-| C1 | frontmatter 合法（name==目录名、depends-on 键规范）——**分区定级：in-house=error（可修）；vendor=warn（镜像内容不自动改写，报告上游问题）；unknown=warn（冻结内容不自动改写）** | error/warn | 是（仅 in-house） |
+| C1 | frontmatter 合法（name==目录名、depends-on 键规范）+ **strict-YAML 校验（C1b，批量 ruby）**——**分区定级：in-house=error（可修）；vendor=warn（镜像内容不自动改写，报告上游问题；物化层已归一）；unknown=warn（冻结内容不自动改写）** | error/warn | 是（仅 in-house） |
 | C2 | `depends-on:` 解析：目标存在于 in-house 或 vendor **且**已部署到 node | error | 是（重部署缺口，带 delta guard） |
 | C3 | 重复注册：`~/.zcode/skills` 含与 `~/.agents/skills` 同名条目（默认应为空） | error | 是（删 symlinks） |
 | C4 | 部署完整性：repo（vendor+in-house 的 install-name 集）vs `~/.agents/skills` 双向差集 + **vendor 区内容漂移**（node 与 repo 比对）+ in-house node 侧漂移报告 | error/warn | 是（重部署，带 delta guard） |
@@ -275,6 +275,7 @@ repair 白名单（与 G7/NFR 一致）：C1（仅 in-house）、C2/C4（带 del
 *   **多节点并发**: pull 权集中于单一权威节点（G1b 规则约束；lock 单文件的残余冲突面以此规则闭合）。
 *   **harness 行为漂移**: `expected.json` 的 `verifiedAt` 超期（>90 天）warn，提示重验（C7）。
 *   **lock/树漂移**: pull 原子性（temp+rename、单源失败全中止）+ C5 一致性检查。
+*   **上游不守本 repo 规约**（如 mattpocock 的 description 未加引号，strict-YAML 解析器丢弃该 skill）: 镜像容忍（字节忠实）+ 物化层归一（`lib-normalize.rb` 修复已知断裂类）+ doctor C1b 持续检测（vendor 区 warn）；新断裂类出现时先人工确认再扩 normalizer 范围。
 *   **node 侧未收割改动丢失**: delta guard 硬中止 + adopt 显式收割通道。
 
 ## Future Improvements
