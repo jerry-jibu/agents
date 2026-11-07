@@ -113,6 +113,32 @@ while IFS=$'\t' read -r zone src name; do
 done < "$plan"
 if [ "$c1_bad" -eq 0 ]; then result PASS c1 "frontmatter ok for $total skills"; fi
 
+# C1b: strict-YAML frontmatter validity (dsh drops skills whose frontmatter has
+# unquoted ": " in plain scalors — code-walk lesson 2026-11-07; batch via ruby)
+if command -v ruby >/dev/null 2>&1; then
+  yaml_report="$(mktemp "${TMPDIR:-/tmp}/doctor.yaml.XXXXXX")"
+  cleanup() { rm -f "$plan" "$baselines" "$locksources" "$deps_all" "$missing" "$HARNESS_EVAL" "$yaml_report"; }
+  ruby -ryaml -e '
+    root = ARGV[0]
+    Dir.glob(File.join(root, "**/SKILL.md")).sort.each do |p|
+      raw = File.read(p) rescue (puts "#{p}\tunreadable"); next if raw.nil?
+      m = raw.match(/\A---\r?\n(.*?)\r?\n---\r?\n/m)
+      unless m then puts "#{p}\tno frontmatter"; next end
+      begin; YAML.safe_load(m[1]); rescue => e; puts "#{p}\t#{e.message.lines.first.to_s.strip}"; end
+    end
+  ' "$REPO_ROOT" > "$yaml_report" 2>/dev/null || true
+  c1b_bad=0
+  while IFS=$'\t' read -r p msg; do
+    [ -n "$p" ] || continue
+    case "$p" in
+      "$INHOUSE"/*) result ERROR c1 "YAML frontmatter invalid: ${p#$REPO_ROOT/} — $msg (strict parsers like dsh drop the skill)"; c1b_bad=$((c1b_bad + 1)) ;;
+      *) result WARN c1 "YAML frontmatter invalid: ${p#$REPO_ROOT/} — $msg (mirror/frozen — may need upstream fix or local deviation note)"; c1b_bad=$((c1b_bad + 1)) ;;
+    esac
+  done < "$yaml_report"
+  rm -f "$yaml_report"
+  if [ "$c1b_bad" -eq 0 ]; then result PASS c1 "strict-YAML frontmatter valid for all SKILL.md"; fi
+fi
+
 # ---- C2: depends-on targets exist (repo) and are deployed (node) ---------------
 c2_bad=0
 while IFS=$'\t' read -r zone src name; do

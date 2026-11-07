@@ -459,7 +459,7 @@
       "source": "github.com/mattpocock/skills",
       "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "55694f271bd5a053c39d652a4b06244dd0cd50cc"
+      "deployedHash": "eda74783eca8cd92ec2cf296d1661e18649499c0"
     },
     "source-driven-development": {
       "zone": "vendor",
@@ -589,7 +589,7 @@
       "deployedHash": "c7ee9fb8b86f2c84b116ca9b2c087ed32c655c3a"
     },
     "code-walk": {
-      "deployedHash": "30f8a40e5ca3f6823ec4db7fc10722fa4eba186c"
+      "deployedHash": "29688244b89c57531ea315473bc6b5a68f399d02"
     },
     "insight-diagram": {
       "deployedHash": "cb80043f9754ebe50a1bc43c34c4b378454c4819"

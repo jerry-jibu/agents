@@ -1,6 +1,6 @@
 ---
 name: code-walk
-description: Conduct an exhaustive 4-tier, function-level code walk and adversarial review for unfamiliar codebases or AI-generated code. Use whenever the user asks for "code walk", "代码走读", "deep dive", "函数级走读", "源码剖析", "walk through the code", "review AI code", "理解陌生代码", or asks to deeply inspect architecture, component boundaries, data/control flows, lock discipline, anti-injection boundaries, and modifiability/blast radius. Produces progressive dual-artifacts: a Git-friendly Markdown guide and a zero-dependency interactive HTML presentation (Document/Slideshow views, Archify topology, and verification quizzes).
+description: 'Conduct an exhaustive 4-tier, function-level code walk and adversarial review for unfamiliar codebases or AI-generated code. Use whenever the user asks for "code walk", "代码走读", "deep dive", "函数级走读", "源码剖析", "walk through the code", "review AI code", "理解陌生代码", or asks to deeply inspect architecture, component boundaries, data/control flows, lock discipline, anti-injection boundaries, and modifiability/blast radius. Produces progressive dual-artifacts: a Git-friendly Markdown guide and a zero-dependency interactive HTML presentation (Document/Slideshow views, Archify topology, and verification quizzes).'
 depends-on: archify, diagram-design
 ---
 

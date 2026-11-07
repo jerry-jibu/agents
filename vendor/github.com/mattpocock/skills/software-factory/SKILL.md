@@ -1,7 +1,7 @@
 ---
 name: software-factory
-description: Shared language for designing a software factory: the tasks it runs and the services it plugs into.
-disable-model-invocation: true
+description: 'Shared language for designing a software factory: the tasks it runs and the services it plugs into.
+disable-model-invocation: true'
 ---
 
 A **software factory** is a system of agents that turns tickets, PRs and schedules into merged code, deployed on remote infrastructure the user chooses. This skill is the language for designing one. Use these terms, and only these, when discussing or whiteboarding a factory; when the user reaches for a word under _Avoid_, name the canonical term.
