@@ -172,7 +172,7 @@
       "source": "github.com/cathrynlavery/diagram-design",
       "commit": "e57eda6102a19444538ebd611d39534fad65b663",
       "pulledAt": "2026-11-07T01:36:21Z",
-      "deployedHash": "346894c7daac1e92cebc15e855ac3e32bbd04d76"
+      "deployedHash": "426e96540f7d8201e044daa3dbb75decb8abbe18"
     },
     "documentation-and-adrs": {
       "zone": "vendor",
