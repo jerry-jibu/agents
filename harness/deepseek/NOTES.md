@@ -35,10 +35,28 @@ ACP 模式下则由连接方在会话内声明，`packages/acp/acp/src/mcp.ts` �
 （stdio：`<绝对路径>/node_modules/.bin/npm run mcp`，sideshow repo 为 cwd；
 或 HTTP：`http://localhost:8228/mcp`）。
 
-## 已知运行时问题（2026-11-07，与 skills repo 无关）
+## 运行时故障排查记录（2026-11-07，已修复）
 
-DeepSeek Harness 桌面版 0.2.2-rc.1（11-04 更新）报
-`workspaceController`/`sessionController` unavailable——gateway 活着但核心服务
-未注册；嫌疑为 app 升级后 profile 第三方插件（10-24 安装，0.2.1 时代 API）在
-cordis fail-fast 下中断启动链。fatal 诊断只发往 App 诊断面板不落盘
-（`apps/desktop-host/src/index.ts` 的 process.send fatal）。
+**现象**：桌面版 0.2.2-rc.1（11-04 更新）每次会话报
+`workspace create failed: ... active Service "workspaceController" is unavailable`
+与 `sessionController` unavailable。
+
+**根因（前台复跑 host 抓获）**：`~/.dsh/sessions/*/` 下 2 个
+`*.archived-20261024` 归档会话目录的**身份头未随归档重写**（header 仍指向归档前
+路径）——`dsh-workspace` 插件启动时 `assertStoredIdentity` 校验失败 →
+`workspaceRegistry` 缺席 → session/workspace-controller pending → gateway 报
+unavailable。10-24 当天的归档过程本身有 bug（当天 profile node_modules 也有
+变更活动）。
+
+**修复**：2 个损坏归档目录全部隔离到 `~/.dsh/quarantine/`（未删除，可恢复）；
+host 重跑验证 corrupt 清零、核心服务全激活。
+
+**遗留（上游 bug，无害）**：`desktop-product-telemetry` 因 app 组合层漏传
+`serviceVersion` 而 ValidationError → `product-analytics` 连带 pending。
+patch 层无法修（`config:` 是整体替换不是合并，补 serviceVersion 会顶掉
+serviceName）——需上游修组合层。上游可报 bug：归档身份头 + 组合层两处。
+
+**调试方法（复用价值）**：fatal 诊断不落盘，前台复跑 host 抓输出——
+`ELECTRON_RUN_AS_NODE=1 "/Applications/DeepSeek Harness.app/Contents/MacOS/
+DeepSeek Harness" --expose-internals <dsh-desktop-host/lib/index.js> <app.asar/dsh>
+<profile> <primary-runtime> <pnpm.mjs> <runtime/bin>`（cwd = profile 目录）。
