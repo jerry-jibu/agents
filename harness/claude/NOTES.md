@@ -10,6 +10,9 @@
 symlink 农场（→ `../../.agents/skills/<name>`）——历史上正是为了解决"skills 不可见"
 而建；本次会话验证确认其必要性。
 
+**会话级确认（2026-11-07，用户实测）**：农场刷新至 104 条后，claude 会话中
+skills 全部可见、可用（"claude is ok"）。本 harness 验证完全闭合。
+
 **处置（restore 自动维护）**：`sync-skills.sh restore` 末尾按
 `expected.json`（`skillsExtra` + `skillsExtraMode: symlink-farm`）重建农场——
 当前 104 条 symlink 全量对齐共享根，陈旧/断链自动清理。农场是"单发现版"：
