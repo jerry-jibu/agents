@@ -239,3 +239,4 @@ Owner=人；截止=Rev.3 approve 前。D2 是有意的范围反转（Rev.1 §2.1
 | AC-6 | S8 drift 票的 GitHub issue 落点（drift issue 或 SPEC 评论）与 T↔issue 映射 | W | S8 前 |
 | AC-7 | headless 4 洞：brainstorm/draft 分节、seam 决策记录、S0 最多 3 轮、失败/升级 24h 模板 | W | S0 前 |
 | AC-8 | labels/PR 模板/CI job/plan-claim 检查命令；§12 编号化 | W | S0 前 |
+| AC-9 | PR/issue 自动通知：validation profile 的 Source=sandbox + `observePulls/Issues/Comments`；PR/issue thread 订阅；merge/close/comment 时 worker 发飞书；单账号下人的事件可能被 source 当 agent 自身丢弃 → 飞书轮询/第二身份兜底；sandbox 跨仓用 poller | W | validation 前 |
